@@ -14,20 +14,27 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { MaterialModule } from "./material/material.module";
+import { JobListingsComponent } from './job-listings/job-listings.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainPageComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    JobListingsComponent,
+    UserProfileComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     RouterModule.forRoot([
-      {path: '', component: LoginComponent, pathMatch: 'full'},
-      {path: 'logout', component: LogoutComponent}
+      {path: '', component: MainPageComponent},
+      {path: 'login', component: LoginComponent},
+      {path: 'logout', component: LogoutComponent},
+      {path: 'user-profile', component: UserProfileComponent},
+      {path: 'job-listings', component: JobListingsComponent}
     ]),
     BrowserAnimationsModule,
     SocialLoginModule,

@@ -14,12 +14,12 @@ export class AuthService {
 
   public signOutExternal = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("currentUser");
     console.log("token deleted");
   }
 
   loginWithGoogle(credentials: string): Observable<any> {
     const header = new HttpHeaders().set('Content-type', 'application/json');
-    console.log(credentials);
-    return this.httpClient.post(this.baseUrl + "login/oauth2/code/google", JSON.stringify(credentials), { headers: header, withCredentials: true });
+    return this.httpClient.post(this.baseUrl + "users/login-with-google", credentials, { headers: header, withCredentials: false });
   }
 }

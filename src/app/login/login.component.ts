@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { CredentialResponse, PromptMomentNotification } from 'google-one-tap';
 import {AuthService} from "../services/auth/auth.service";
 import {environment} from "../../environments/environments";
+import {User} from "../services/user/user";
 
 
 @Component({
@@ -45,7 +46,8 @@ export class LoginComponent {
 
   async handleCredentialResponse(response: CredentialResponse) {
     await this.service.loginWithGoogle(response.credential).subscribe(
-      (x:any) => {
+      (user:User) => {
+        localStorage.setItem("currentUser", JSON.stringify(user));
         this._ngZone.run(() => {
           this.router.navigate(['/logout']);
         })},
