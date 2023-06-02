@@ -48,8 +48,15 @@ export class LoginComponent {
     await this.service.loginWithGoogle(response.credential).subscribe(
       (user:User) => {
         localStorage.setItem("currentUser", JSON.stringify(user));
+        localStorage.setItem("currentUserName", user.name);
+        localStorage.setItem("currentUserEmail", user.email);
+        localStorage.setItem("currentUserPhoneNumber", user.phoneNumber);
+        localStorage.setItem("currentUserPicture", user.userPicture);
         this._ngZone.run(() => {
-          this.router.navigate(['/logout']);
+          this.router.navigate(['/dashboard'])
+            .then(() => {
+              window.location.reload();
+            });
         })},
       (error:any) => {
         console.log(error);

@@ -1,5 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
-:root {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*:root {
   --color-ibb-black: #1a1e26;
   --color-ibb-light-black: #1f242d;
   --color-ibb-white: #c6c7c8;
@@ -7,30 +10,29 @@
   --color-ibb-light-green: #57d7ba;
   --color-ibb-border: #2f3f4d;
   --header-height: 80px;
-}
+}*/
 
-body {
-  padding-top: var(--header-height);
+/*body {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   min-height: 100%;
-  color: var(--color-ibb-light-black);
+  background-color: var(--color-ibb-black);
   font-family: "Rubik", sans-serif;
   font-weight: 400;
   overflow-x: hidden;
   overflow-y: auto;
 }
 
-main {
+/*main {
   width: 100%;
   max-width: 2000px;
   background-image: linear-gradient(to bottom, #1f242d, #1f242d, #1a1b1f, #121212);
   margin-top: var(--header-height);
-}
-
-.navbar {
+}*/
+/*
+#navbar {
   position:fixed;
   top:0;
   left:0;
@@ -44,7 +46,7 @@ main {
   width:100%;
   height: var(--header-height);
 }
-
+/*//*
 .nav-main-link {
   position: relative;
   display: flex;
@@ -54,8 +56,6 @@ main {
   white-space: nowrap;
   font-size: 14px;
   color: var(--color-ibb-white);
-}
+}*/
 
-a {
-color: #c6c7c8;
-}
+
