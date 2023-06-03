@@ -13,6 +13,7 @@ import { CompaniesComponent } from './companies/companies.component';
 import { ApplicationsComponent } from './applications/applications.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
+import { FirstTimeUserSetupComponent } from './first-time-user-setup/first-time-user-setup.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { UserSettingsComponent } from './user-settings/user-settings.component';
     CompaniesComponent,
     ApplicationsComponent,
     NotificationsComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    FirstTimeUserSetupComponent
   ],
   imports: [
     HttpClientModule,
@@ -38,7 +40,8 @@ import { UserSettingsComponent } from './user-settings/user-settings.component';
       {path: 'companies', component: CompaniesComponent},
       {path: 'applications', component: ApplicationsComponent},
       {path: 'notifications', component: NotificationsComponent},
-      {path: 'settings', component: UserSettingsComponent}
+      {path: 'settings', component: UserSettingsComponent},
+      {path: 'first-time-user-setup', component: FirstTimeUserSetupComponent}
     ]),
     BrowserAnimationsModule,
     MaterialModule

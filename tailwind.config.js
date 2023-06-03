@@ -11,7 +11,9 @@ module.exports = {
       'ibb-light-black': '#1f242d',
       'ibb-white': '#c6c7c8',
       'ibb-dark-green': '#4db9a2',
-      'ibb-border-grey': '#2f3f4d'
+      'ibb-border-grey': '#2f3f4d',
+      'ibb-button-grey': '#2f3f4d',
+      'ibb-button-green-hover': '#57d7ba'
     },
     extend: {},
   },

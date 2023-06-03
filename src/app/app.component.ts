@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from "./services/user/user";
 import {Router} from "@angular/router";
-import {AuthService} from "./services/auth/auth.service";
+import {UserService} from "./services/user/user.service";
 
 @Component({
   selector: 'app-root',
@@ -10,8 +10,7 @@ import {AuthService} from "./services/auth/auth.service";
 })
 export class AppComponent {
 
-  currentUser: User = JSON.parse(localStorage.getItem('currentUser')!);
-  currentUserPicture: String = localStorage.getItem('currentUserPicture')!;
+  user: User = JSON.parse(localStorage.getItem('currentUser')!);
 
   displayUserMenu = false;
   toggleUserMenu() {
@@ -19,7 +18,7 @@ export class AppComponent {
     console.log(this.displayUserMenu);
   }
 
-  constructor(private router: Router, private service: AuthService) {}
+  constructor(private router: Router, private userService: UserService) {}
 
   navigateToLoginPage() {
     this.router.navigate(['/login'])
@@ -28,7 +27,7 @@ export class AppComponent {
       });
   }
   logout() {
-    this.service.signOutExternal();
+    this.userService.signOutExternal();
     this.router.navigate(['/dashboard'])
       .then(() => {
         window.location.reload();

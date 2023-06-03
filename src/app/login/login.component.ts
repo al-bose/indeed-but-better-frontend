@@ -1,11 +1,10 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CredentialResponse, PromptMomentNotification } from 'google-one-tap';
-import {AuthService} from "../services/auth/auth.service";
 import {environment} from "../../environments/environments";
 import {User} from "../services/user/user";
+import {UserService} from "../services/user/user.service";
 
 
 @Component({
@@ -17,7 +16,7 @@ export class LoginComponent {
 
   constructor(private fb: FormBuilder,
               private router: Router,
-              private service: AuthService,
+              private userService: UserService,
               private _ngZone: NgZone) {}
 
   private clientId = environment.clientId;
@@ -45,19 +44,21 @@ export class LoginComponent {
   }
 
   async handleCredentialResponse(response: CredentialResponse) {
-    await this.service.loginWithGoogle(response.credential).subscribe(
+    await this.userService.loginWithGoogle(response.credential).subscribe(
       (user:User) => {
         localStorage.setItem("currentUser", JSON.stringify(user));
-        localStorage.setItem("currentUserName", user.name);
-        localStorage.setItem("currentUserEmail", user.email);
-        localStorage.setItem("currentUserPhoneNumber", user.phoneNumber);
-        localStorage.setItem("currentUserPicture", user.userPicture);
-        this._ngZone.run(() => {
+        if(user.userType) {
           this.router.navigate(['/dashboard'])
             .then(() => {
               window.location.reload();
             });
-        })},
+        } else {
+          this.router.navigate(['/first-time-user-setup'])
+            .then(() => {
+              window.location.reload();
+            });
+        }
+        },
       (error:any) => {
         console.log(error);
       }
