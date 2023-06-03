@@ -2,15 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/*:root {
-  --color-ibb-black: #1a1e26;
-  --color-ibb-light-black: #1f242d;
-  --color-ibb-white: #c6c7c8;
-  --color-ibb-dark-green: #4db9a2;
-  --color-ibb-light-green: #57d7ba;
-  --color-ibb-border: #2f3f4d;
-  --header-height: 80px;
-}*/
+:root {
+  --logo-link: 'https://tailwindui.com/img/logos/mark.svg?color=green&shade=400'
+}
 
 /*body {
   display: flex;
