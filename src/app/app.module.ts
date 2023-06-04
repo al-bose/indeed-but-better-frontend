@@ -14,6 +14,8 @@ import { ApplicationsComponent } from './applications/applications.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
 import { FirstTimeUserSetupComponent } from './first-time-user-setup/first-time-user-setup.component';
+import { CreateJobListingComponent } from './create-job-listing/create-job-listing.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { FirstTimeUserSetupComponent } from './first-time-user-setup/first-time-
     ApplicationsComponent,
     NotificationsComponent,
     UserSettingsComponent,
-    FirstTimeUserSetupComponent
+    FirstTimeUserSetupComponent,
+    CreateJobListingComponent
   ],
   imports: [
     HttpClientModule,
@@ -41,10 +44,12 @@ import { FirstTimeUserSetupComponent } from './first-time-user-setup/first-time-
       {path: 'applications', component: ApplicationsComponent},
       {path: 'notifications', component: NotificationsComponent},
       {path: 'settings', component: UserSettingsComponent},
-      {path: 'first-time-user-setup', component: FirstTimeUserSetupComponent}
+      {path: 'first-time-user-setup', component: FirstTimeUserSetupComponent},
+      {path: 'create-job-listing', component: CreateJobListingComponent}
     ]),
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

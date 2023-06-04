@@ -1,0 +1,43 @@
+<div class="bg-ibb-light-black absolute mt-10 m-auto left-0 right-0 shadow-lg items-center justify-center w-3/12 p-5">
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-ibb-white">Create Job Listing</h2>
+  </div>
+
+  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <form class="space-y-6">
+      <div class = "form-group">
+        <label for="jobTitle" class="block text-sm font-medium leading-6 text-ibb-white">Job Title</label>
+        <div class="mt-2">
+          <input [(ngModel)]="model.jobTitle" id="jobTitle" name="jobTitle" type="text" required class="form-control block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        </div>
+      </div>
+
+      <div class = "form-group">
+        <label for="description" class="block text-sm font-medium leading-6 text-ibb-white">Job Description</label>
+        <div class="mt-2">
+          <textarea [(ngModel)]="model.description" id="description" name="description" type="text" required rows="10" cols="50" class="form-control block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          </textarea>
+        </div>
+      </div>
+
+      <div class = "form-group">
+        <label for="location" class="block text-sm font-medium leading-6 text-ibb-white">Location</label>
+        <div class="mt-2">
+          <input [(ngModel)]="model.location" id="location" name="location" type="text" required class="form-control block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        </div>
+      </div>
+
+      <div class = "form-group">
+        <label for="salary" class="block text-sm font-medium leading-6 text-ibb-white">Salary</label>
+        <div class="mt-2">
+          <input [(ngModel)]="model.salary" id="salary" name="salary" type="number" required class="form-control block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        </div>
+      </div>
+
+      <div>
+        <button type="submit" (click)="onSubmit()" class="flex w-full justify-center bg-ibb-dark-green text-ibb-light-black rounded-md p-2 mt-6">Create</button>
+      </div>
+    </form>
+  </div>
+</div>
+

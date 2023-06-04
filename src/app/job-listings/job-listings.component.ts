@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {JobListingService} from "../services/jobListing/jobListing.service";
 import {JobListing} from "../services/jobListing/jobListing";
+import {User} from "../services/user/user";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-job-listings',
@@ -9,9 +11,11 @@ import {JobListing} from "../services/jobListing/jobListing";
 })
 export class JobListingsComponent {
 
-  constructor(private jobListingService : JobListingService) {}
+  constructor(private jobListingService : JobListingService, private router : Router) {}
+
   jobListings: JobListing[] = [];
   selectedListing? : JobListing;
+  user: User = JSON.parse(localStorage.getItem("currentUser")!);
 
   ngOnInit() : void {
     this.getJobListings();
@@ -28,4 +32,12 @@ export class JobListingsComponent {
   changeSelectedListing(jobListing: JobListing) : void {
     this.selectedListing = jobListing;
   }
+
+  navigateToCreation() : void {
+    this.router.navigate(['/create-job-listing'])
+      .then(() => {
+        window.location.reload();
+      });
+  }
+
 }
