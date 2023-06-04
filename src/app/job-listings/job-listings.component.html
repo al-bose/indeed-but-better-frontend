@@ -1,1 +1,48 @@
-<p>job-listings works!</p>
+
+<div class="grid grid-cols-2 gap-10 bg-ibb-light-black mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mt-6">
+  <div>
+    <ul role="list" class="divide-y divide-ibb-white">
+      <li *ngFor="let j of jobListings" class="justify-between gap-x-6 py-5">
+        <div *ngIf="j.jobListingId == selectedListing?.jobListingId; else elseBlock" class="gap-x-4 p-2 hover: border-2 border-0 border-ibb-button-green-hover rounded-lg hover: cursor-pointer" (click)="changeSelectedListing(j)">
+          <div class="min-w-0">
+            <p class="font-bold leading-7 text-ibb-white">{{j.jobTitle}}</p>
+            <p class="text-sm leading-6 text-ibb-white">{{j.location}}</p>
+            <p class="text-sm leading-6 text-ibb-white">{{j.salary}}</p>
+            <p class="mt-1 truncate text-xs leading-5 text-ibb-white">{{j.description}}</p>
+          </div>
+        </div>
+        <ng-template #elseBlock>
+          <div class="gap-x-4 p-2 hover: border-2 border-0 hover:border-ibb-button-green-hover border-ibb-light-black rounded-lg hover: cursor-pointer" (click)="changeSelectedListing(j)">
+            <div class="min-w-0">
+              <p class="font-bold leading-7 text-ibb-white">{{j.jobTitle}}</p>
+              <p class="text-sm leading-6 text-ibb-white">{{j.location}}</p>
+              <p class="text-sm leading-6 text-ibb-white">{{j.salary}}</p>
+              <p class="mt-1 truncate text-xs leading-5 text-ibb-white">{{j.description}}</p>
+            </div>
+          </div>
+        </ng-template>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <div>
+      <p class="mt-2 text-3xl font-bold text-ibb-white sm:text-4xl snap-center">{{selectedListing?.jobTitle}}</p>
+    </div>
+    <div>
+      <p class="mt-6 font-semibold text-lg leading-8 text-ibb-white">Job Details</p>
+      <p class="mt-2 text-sm leading-6 text-ibb-white">{{selectedListing?.location}}</p>
+      <p class="mt-2 text-sm leading-6 text-ibb-white">{{selectedListing?.salary}}</p>
+    </div>
+    <div>
+      <p class="mt-6 font-semibold text-lg leading-8 text-ibb-white">Job Description</p>
+      <p class="mt-2 text-lg leading-7 text-ibb-white">{{selectedListing?.description}}</p>
+      <button class="bg-ibb-dark-green text-ibb-light-black rounded-md p-2 mt-6">Apply Now</button>
+    </div>
+
+
+  </div>
+
+</div>
+
+
+
