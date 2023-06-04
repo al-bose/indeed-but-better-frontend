@@ -11,5 +11,4 @@ export class JobListing {
     this.salary = salary;
     this.location = location;
   }
-
 }
