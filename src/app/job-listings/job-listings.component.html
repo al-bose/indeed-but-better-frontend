@@ -39,7 +39,7 @@
       <div>
         <p class="mt-6 font-semibold text-lg leading-8 text-ibb-white">Job Description</p>
         <p class="mt-2 text-lg leading-7 text-ibb-white">{{selectedListing?.description}}</p>
-        <button *ngIf="'jobSeeker' === 'jobSeeker'" class="bg-ibb-dark-green text-ibb-light-black rounded-md p-2 mt-6">Apply Now</button>
+        <button *ngIf="'jobSeeker' === 'jobSeeker'" class="bg-ibb-dark-green text-ibb-light-black rounded-md p-2 mt-6" (click)="apply()">Apply Now</button>
       </div>
     </div>
   </div>

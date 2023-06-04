@@ -3,6 +3,8 @@ import {JobListingService} from "../services/jobListing/jobListing.service";
 import {JobListing} from "../services/jobListing/jobListing";
 import {User} from "../services/user/user";
 import { Router } from '@angular/router';
+import {ApplicationService} from "../services/application/application.service";
+import {Application} from "../services/application/application";
 
 @Component({
   selector: 'app-job-listings',
@@ -11,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class JobListingsComponent {
 
-  constructor(private jobListingService : JobListingService, private router : Router) {}
+  constructor(private jobListingService : JobListingService, private router : Router, private applicationService : ApplicationService) {}
 
   jobListings: JobListing[] = [];
   selectedListing? : JobListing;
@@ -38,6 +40,24 @@ export class JobListingsComponent {
       .then(() => {
         window.location.reload();
       });
+  }
+
+ apply() : void {
+
+   let application = new Application("Testing application creation", this.user.name + "'s Application To " + this.selectedListing?.jobTitle);
+
+    this.applicationService.createApplication(application, this.user.userId, this.selectedListing?.jobListingId!)
+      .subscribe((x:any) => {
+          console.log(x);
+          this.router.navigate(["/job-listings"])
+            .then(() => {
+              window.location.reload();
+            })
+        },
+        (error:any) => {
+          console.log(error);
+        }
+      );
   }
 
 }
