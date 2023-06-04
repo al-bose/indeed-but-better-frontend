@@ -3,6 +3,8 @@ import {CompanyService} from "../services/company/company.service";
 import {Company} from "../services/company/company";
 import {Router} from "@angular/router";
 import {User} from "../services/user/user";
+import {JobListing} from "../services/jobListing/jobListing";
+import {JobListingService} from "../services/jobListing/jobListing.service";
 
 @Component({
   selector: 'app-companies',
@@ -11,11 +13,13 @@ import {User} from "../services/user/user";
 })
 export class CompaniesComponent {
 
-  constructor(private companyService : CompanyService, private router : Router) {}
+  constructor(private companyService : CompanyService, private router : Router, private jobListingService : JobListingService) {}
 
   companies : Company[] = [];
   selectedCompany? : Company;
   user: User = JSON.parse(localStorage.getItem("currentUser")!);
+  jobListings: JobListing[] = [];
+  selectedListing? : JobListing;
 
   ngOnInit() : void
   {
@@ -27,11 +31,20 @@ export class CompaniesComponent {
       .subscribe(companies => {
         this.companies = companies;
         this.selectedCompany = this.companies.at(0);
+        this.jobListingService.getAllJobListingsByCompanyId(this.selectedCompany?.id!)
+          .subscribe(jobs => {this.jobListings = jobs; this.selectedListing = jobs.at(0)});
       })
   }
 
   changeSelectedCompany(company : Company) : void {
     this.selectedCompany = company;
+
+    this.jobListingService.getAllJobListingsByCompanyId(this.selectedCompany?.id)
+      .subscribe(jobs => {this.jobListings = jobs; this.selectedListing = jobs.at(0)});
+  }
+
+  changeSelectedListing(jobListing: JobListing) : void {
+    this.selectedListing = jobListing;
   }
 
   navigateToCreation() : void {
