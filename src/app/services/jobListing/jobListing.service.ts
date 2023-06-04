@@ -18,9 +18,9 @@ export class JobListingService {
     return this.httpClient.get(environment.baseUrl + "job-listings/all", { headers: headers, withCredentials: false})
   }
 
-  createJobListing(jobListing : JobListing, userId: number): Observable<any> {
+  createJobListing(jobListing : JobListing, userId: number, companyId: number): Observable<any> {
     var headers = new HttpHeaders().set('Content-type', 'application/json');
-    return this.httpClient.post(environment.baseUrl + "job-listings/users/" + userId + "/create", JSON.stringify(jobListing), { headers: headers, withCredentials: false, responseType: 'text' });
+    return this.httpClient.post(environment.baseUrl + "job-listings/users/" + userId + "/companies/" + companyId + "/create", JSON.stringify(jobListing), { headers: headers, withCredentials: false, responseType: 'text' });
   }
 
 }

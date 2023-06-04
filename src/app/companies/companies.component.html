@@ -6,7 +6,7 @@
     <div>
       <ul role="list" class="divide-y divide-ibb-white">
         <li *ngFor="let c of companies" class="justify-between gap-x-6 py-5">
-          <div *ngIf="c.companyId == selectedCompany?.companyId; else elseBlock" class="gap-x-4 p-2 hover: border-2 border-0 border-ibb-button-green-hover rounded-lg hover: cursor-pointer" (click)="changeSelectedCompany(c)">
+          <div *ngIf="c.id == selectedCompany?.id; else elseBlock" class="gap-x-4 p-2 hover: border-2 border-0 border-ibb-button-green-hover rounded-lg hover: cursor-pointer" (click)="changeSelectedCompany(c)">
             <div class="min-w-0">
               <p class="font-bold leading-7 text-ibb-white">{{c.name}}</p>
               <p class="text-sm leading-6 text-ibb-white">{{c.location}}</p>

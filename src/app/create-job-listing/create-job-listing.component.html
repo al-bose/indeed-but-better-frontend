@@ -34,6 +34,15 @@
         </div>
       </div>
 
+      <div class = "form-group">
+        <label for="company" class="block text-sm font-medium leading-6 text-ibb-white">Company</label>
+        <div class="mt-2">
+          <select [(ngModel)]="selectedCompanyId" id="company" name="company" required class="form-control block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <option [value]="c.id" *ngFor="let c of companies;">{{c.name}}</option>
+          </select>
+        </div>
+      </div>
+
       <div>
         <button type="submit" (click)="onSubmit()" class="flex w-full justify-center bg-ibb-dark-green text-ibb-light-black rounded-md p-2 mt-6">Create</button>
       </div>
