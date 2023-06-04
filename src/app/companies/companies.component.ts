@@ -43,12 +43,16 @@ export class CompaniesComponent {
       .subscribe(jobs => {this.jobListings = jobs; this.selectedListing = jobs.at(0)});
   }
 
-  changeSelectedListing(jobListing: JobListing) : void {
-    this.selectedListing = jobListing;
+
+  navigateToCompanyCreation() : void {
+    this.router.navigate(['/create-company'])
+      .then(() => {
+        window.location.reload();
+      });
   }
 
-  navigateToCreation() : void {
-    this.router.navigate(['/create-company'])
+  navigateToJobListingCreation() : void {
+    this.router.navigate(['/create-job-listing'])
       .then(() => {
         window.location.reload();
       });
