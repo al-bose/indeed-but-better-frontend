@@ -35,7 +35,7 @@ export class CompaniesComponent {
   }
 
   navigateToCreation() : void {
-    this.router.navigate(['/create-job-listing'])
+    this.router.navigate(['/create-company'])
       .then(() => {
         window.location.reload();
       });

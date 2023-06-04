@@ -16,6 +16,7 @@ import { UserSettingsComponent } from './user-settings/user-settings.component';
 import { FirstTimeUserSetupComponent } from './first-time-user-setup/first-time-user-setup.component';
 import { CreateJobListingComponent } from './create-job-listing/create-job-listing.component';
 import { FormsModule } from '@angular/forms';
+import { CreateCompanyComponent } from './create-company/create-company.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FormsModule } from '@angular/forms';
     NotificationsComponent,
     UserSettingsComponent,
     FirstTimeUserSetupComponent,
-    CreateJobListingComponent
+    CreateJobListingComponent,
+    CreateCompanyComponent
   ],
   imports: [
     HttpClientModule,
@@ -45,7 +47,8 @@ import { FormsModule } from '@angular/forms';
       {path: 'notifications', component: NotificationsComponent},
       {path: 'settings', component: UserSettingsComponent},
       {path: 'first-time-user-setup', component: FirstTimeUserSetupComponent},
-      {path: 'create-job-listing', component: CreateJobListingComponent}
+      {path: 'create-job-listing', component: CreateJobListingComponent},
+      {path: 'create-company', component: CreateCompanyComponent}
     ]),
     BrowserAnimationsModule,
     MaterialModule,
