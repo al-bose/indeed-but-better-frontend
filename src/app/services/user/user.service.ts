@@ -10,6 +10,7 @@ import {User} from "./user";
 export class UserService {
 
   baseUrl = environment.baseUrl;
+  user: User = JSON.parse(localStorage.getItem('currentUser')!);
 
   constructor(private httpClient: HttpClient) { }
 
@@ -24,8 +25,12 @@ export class UserService {
   }
 
   updateUser(user:User): Observable<any> {
-    var headers = new HttpHeaders().set('Content-type', 'application/json');
-    return this.httpClient.post(environment.baseUrl + "users/update", JSON.stringify(user), { headers: headers, withCredentials: false, responseType: 'text' });
+    //var headers = new HttpHeaders().set('Content-type', 'application/json');
+    var headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.user.jwt}`
+    });
+    return this.httpClient.post(environment.baseUrl + "users/update", JSON.stringify(user), { headers: headers, withCredentials: true, responseType: 'text' });
   }
 
 }

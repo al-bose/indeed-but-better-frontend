@@ -13,7 +13,8 @@ module.exports = {
       'ibb-dark-green': '#4db9a2',
       'ibb-border-grey': '#2f3f4d',
       'ibb-button-grey': '#2f3f4d',
-      'ibb-button-green-hover': '#57d7ba'
+      'ibb-button-green-hover': '#57d7ba',
+      'pure-white': '#FFFFFF'
     },
     extend: {},
   },
