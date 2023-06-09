@@ -46,4 +46,11 @@ export class AddWorkExperienceComponent {
     );
   }
 
+  cancelSubmit() {
+    this.router.navigate(['/user-profile'])
+      .then(() => {
+        window.location.reload();
+      });
+  }
+
 }

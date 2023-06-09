@@ -45,6 +45,8 @@ import { AddEducationComponent } from './add-education/add-education.component';
       {path: 'dashboard', component: DashboardComponent},
       {path: 'login', component: LoginComponent},
       {path: 'user-profile', component: UserProfileComponent},
+      {path: 'user-profile/add-education', component: AddEducationComponent},
+      {path: 'user-profile/add-work-experience', component: AddWorkExperienceComponent},
       {path: 'job-listings', component: JobListingsComponent},
       {path: 'companies', component: CompaniesComponent},
       {path: 'applications', component: ApplicationsComponent},
@@ -52,9 +54,7 @@ import { AddEducationComponent } from './add-education/add-education.component';
       {path: 'settings', component: UserSettingsComponent},
       {path: 'first-time-user-setup', component: FirstTimeUserSetupComponent},
       {path: 'create-job-listing', component: CreateJobListingComponent},
-      {path: 'create-company', component: CreateCompanyComponent},
-      {path: 'add-education', component: AddEducationComponent},
-      {path: 'add-work-experience', component: AddWorkExperienceComponent}
+      {path: 'create-company', component: CreateCompanyComponent}
     ]),
     BrowserAnimationsModule,
     MaterialModule,

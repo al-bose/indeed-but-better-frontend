@@ -29,4 +29,11 @@ export class AddEducationComponent {
     );
   }
 
+  cancelSubmit() {
+    this.router.navigate(['/user-profile'])
+      .then(() => {
+        window.location.reload();
+      });
+  }
+
 }

@@ -60,7 +60,10 @@
         </div>
       </div> <!-- End end Date -->
 
-      <button (click)="onSubmit()" type="submit" class="text-white bg-ibb-dark-green hover:bg-ibb-darker-green focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add work experience</button>
+      <div class="flex items-center justify-between">
+        <button (click)="onSubmit()" type="submit" class="text-white bg-ibb-dark-green hover:bg-ibb-darker-green focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add work experience</button>
+        <button (click)="cancelSubmit()" type="submit" class="text-white bg-ibb-light-red hover:bg-ibb-dark-red focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Cancel</button>
+      </div>
     </form>
   </div>
 </div>

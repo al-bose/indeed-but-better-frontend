@@ -18,6 +18,8 @@ module.exports = {
         'ibb-border-grey': '#2f3f4d',
         'ibb-button-grey': '#2f3f4d',
         'ibb-button-green-hover': '#57d7ba',
+        'ibb-light-red': '#f75052',
+        'ibb-dark-red': '#aa3738',
         'pure-white': '#FFFFFF'
       }},
   },
