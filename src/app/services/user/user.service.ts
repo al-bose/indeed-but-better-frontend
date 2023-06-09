@@ -24,13 +24,13 @@ export class UserService {
     return this.httpClient.post(environment.baseUrl + "users/login-with-google", credentials, { headers: headers, withCredentials: false });
   }
 
-  updateUser(user:User): Observable<any> {
-    //var headers = new HttpHeaders().set('Content-type', 'application/json');
+  updateUser(updatedUser:User): Observable<any> {
     var headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.user.jwt}`
+      'Authorization': `Bearer ${this.user.jwt}`,
+      'Accept': "*/*"
     });
-    return this.httpClient.post(environment.baseUrl + "users/update", JSON.stringify(user), { headers: headers, withCredentials: true, responseType: 'text' });
+    return this.httpClient.post(environment.baseUrl + "users/update", JSON.stringify(updatedUser), { headers: headers, withCredentials: false, responseType: 'text'});
   }
 
 }

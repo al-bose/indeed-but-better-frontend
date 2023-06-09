@@ -13,16 +13,14 @@ export class FirstTimeUserSetupComponent {
   user: User = JSON.parse(localStorage.getItem("currentUser")!);
   constructor(private router: Router, private userService: UserService) {}
 
-  async setUserType(userType: string) {
+  setUserType(userType: string) {
     this.user.userType = userType;
-    await this.userService.updateUser(this.user).subscribe(
-      (x:any) => {
-        console.log(x);
-      },
-      (error:any) => {
-        console.log(error);
+    this.userService.updateUser(this.user).subscribe(
+      response => {
+        console.log(response);
+        localStorage.setItem("currentUser", JSON.stringify(this.user));
       }
-    )
+    );
   }
 
 }

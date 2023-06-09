@@ -17,6 +17,8 @@ import { FirstTimeUserSetupComponent } from './first-time-user-setup/first-time-
 import { CreateJobListingComponent } from './create-job-listing/create-job-listing.component';
 import { FormsModule } from '@angular/forms';
 import { CreateCompanyComponent } from './create-company/create-company.component';
+import { AddWorkExperienceComponent } from './add-work-experience/add-work-experience.component';
+import { AddEducationComponent } from './add-education/add-education.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { CreateCompanyComponent } from './create-company/create-company.componen
     UserSettingsComponent,
     FirstTimeUserSetupComponent,
     CreateJobListingComponent,
-    CreateCompanyComponent
+    CreateCompanyComponent,
+    AddWorkExperienceComponent,
+    AddEducationComponent
   ],
   imports: [
     HttpClientModule,
@@ -48,7 +52,9 @@ import { CreateCompanyComponent } from './create-company/create-company.componen
       {path: 'settings', component: UserSettingsComponent},
       {path: 'first-time-user-setup', component: FirstTimeUserSetupComponent},
       {path: 'create-job-listing', component: CreateJobListingComponent},
-      {path: 'create-company', component: CreateCompanyComponent}
+      {path: 'create-company', component: CreateCompanyComponent},
+      {path: 'add-education', component: AddEducationComponent},
+      {path: 'add-work-experience', component: AddWorkExperienceComponent}
     ]),
     BrowserAnimationsModule,
     MaterialModule,
