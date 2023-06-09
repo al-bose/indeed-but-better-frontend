@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {Skill} from "./skill";
 import {environment} from "../../../environments/environments";
 import {User} from "../user/user";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
