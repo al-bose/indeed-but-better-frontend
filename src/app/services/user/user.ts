@@ -8,13 +8,16 @@ export class User {
   phoneNumber: string;
   userType: string;
   company: string;
+  jwt: string;
+  title: string;
 
-  constructor(email: string, name: string, firstName: string, lastName: string, userType: string) {
+  constructor(email: string, name: string, firstName: string, lastName: string, userType: string, jwt: string) {
     this.email = email;
     this.name = name;
     this.firstName = firstName;
     this.lastName = lastName;
     this.userType = userType;
+    this.jwt = jwt;
   }
 
 }
