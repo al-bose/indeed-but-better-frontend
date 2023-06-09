@@ -1,4 +1,4 @@
-<div class="bg-ibb-light-black absolute mt-5 m-auto left-0 right-0 shadow-lg items-center justify-center w-6/12 p-5">
+<div class="bg-transparent border border-ibb-border-grey absolute mt-5 m-auto left-0 right-0 shadow-lg items-center justify-center w-6/12 p-5">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
     <h2 class="mt-5 text-center text-2xl font-bold leading-9 tracking-tight text-pure-white">Add Work Experience</h2>
   </div>
@@ -8,13 +8,13 @@
       <!-- Company name and job title -->
       <div class="flex items-center justify-between">
         <div class="mb-6">
-          <label for="companyName" class="block mb-2 text-sm font-medium text-ibb-white dark:text-white">Company name</label>
-          <input [(ngModel)]="model.companyName" type="text" id="companyName" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-ibb-button-green-hover focus:border-ibb-button-green-hover block w-full p-2.5" placeholder="Company name" required>
+          <label for="companyName" class="block mb-2 text-sm font-medium text-ibb-white">Company name</label>
+          <input [(ngModel)]="companyName" type="text" id="companyName" name="companyName" class="shadow-sm bg-ibb-button-grey border border-ibb-border-grey text-ibb-white text-sm rounded-lg focus:ring-ibb-button-green-hover focus:border-ibb-button-green-hover block w-full p-2.5" placeholder="Company name" required>
         </div>
 
         <div class="mb-6">
           <label for="jobTitle" class="block mb-2 text-sm font-medium text-ibb-white dark:text-white">Job title</label>
-          <input [(ngModel)]="model.jobTitle" type="text" id="jobTitle" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-ibb-button-green-hover focus:border-ibb-button-green-hover block w-full p-2.5" placeholder="Job title" required>
+          <input [(ngModel)]="jobTitle" type="text" id="jobTitle" name="jobTitle" class="shadow-sm bg-ibb-button-grey border border-ibb-border-grey text-ibb-white text-sm rounded-lg focus:ring-ibb-button-green-hover focus:border-ibb-button-green-hover block w-full p-2.5" placeholder="Job title" required>
         </div>
       </div>
       <!-- End company name and job title -->
@@ -22,31 +22,45 @@
       <!-- Job location -->
       <div class="mb-6">
         <label for="location" class="block mb-2 text-sm font-medium text-ibb-white dark:text-white">Location</label>
-        <input [(ngModel)]="model.location" type="text" id="location" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-ibb-button-green-hover focus:border-ibb-button-green-hover block w-full p-2.5" placeholder="City, State" required>
+        <input [(ngModel)]="location" type="text" id="location" name="location" class="shadow-sm bg-ibb-button-grey border border-ibb-border-grey text-ibb-white text-sm rounded-lg focus:ring-ibb-button-green-hover focus:border-ibb-button-green-hover block w-full p-2.5" placeholder="City, State" required>
       </div>
       <!-- End location -->
 
       <!-- Job description -->
       <div class="mb-6">
         <label for="description" class="block mb-2 text-sm font-medium text-ibb-white dark:text-white">Description</label>
-        <textarea [(ngModel)]="model.description" id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-ibb-button-green-hover focus:border-ibb-button-green-hover" placeholder="Description (duties, accomplishments, etc.)..."></textarea>
+        <textarea [(ngModel)]="description" id="description" name="description" rows="4" class="bg-ibb-button-grey block p-2.5 w-full text-sm text-ibb-white rounded-lg border border-ibb-border-grey focus:ring-ibb-button-green-hover focus:border-ibb-button-green-hover" placeholder="Description (duties, accomplishments, etc.)..."></textarea>
       </div>
 
-      <!-- Start/end Date -->
-      <div class="flex items-center justify-between">
-
-        <!--<div class="relative max-w-sm">
+      <div class="mb-6"> <!-- Start Date -->
+        <label for="startDate" class="block mb-2 text-sm font-medium text-ibb-white dark:text-white">Start Date</label>
+        <div class="relative max-w-sm">
           <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+            <svg aria-hidden="true" class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
           </div>
-          <input datepicker type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
-        </div>-->
+          <!--<input [(ngModel)]="startDate" datepicker datepicker-format="mm/dd/yyyy" type="text" id="startDate" name="startDate" class="bg-ibb-button-grey border border-ibb-border-grey text-ibb-white text-sm rounded-lg focus:ring-ibb-button-green-hover focus:border-ibb-button-green-hover block w-full pl-10 p-2.5" placeholder="Select date">-->
+          <input [(ngModel)]="startDate" type="text" id="startDate" name="startDate" class="bg-ibb-button-grey border border-ibb-border-grey text-ibb-white text-sm rounded-lg focus:ring-ibb-button-green-hover focus:border-ibb-button-green-hover block w-full pl-10 p-2.5" placeholder="Input date (MM/DD/YYYY)">
+        </div>
+      </div> <!-- End start Date -->
 
+      <!-- End Date -->
+      <div class="flex items-center mb-4">
+        <input (click)="changeRoleIsCurrent()" id="roleIsCurrentCheckbox" name="roleIsCurrentCheckbox" type="checkbox" value="" class="w-4 h-4 text-ibb-dark-green bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" checked>
+        <label for="roleIsCurrentCheckbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">I am currently working in this role</label>
       </div>
-      <!-- End start/end Date -->
 
-      <!-- End job description -->
-      <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register new account</button>
+      <div *ngIf="!roleIsCurrent" class="mb-6"> <!-- Start Date -->
+        <label for="finishDate" class="block mb-2 text-sm font-medium text-ibb-white dark:text-white">End Date</label>
+        <div class="relative max-w-sm">
+          <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg aria-hidden="true" class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+          </div>
+          <!--<input [(ngModel)]="endDate" datepicker datepicker-autohide datepicker-format="mm/dd/yyyy" type="text" id="finishDate" name="finishDate" class="bg-ibb-button-grey border border-ibb-border-grey text-ibb-white text-sm rounded-lg focus:ring-ibb-button-green-hover focus:border-ibb-button-green-hover block w-full pl-10 p-2.5" placeholder="Select date">-->
+          <input [(ngModel)]="endDate" type="text" id="finishDate" name="finishDate" class="bg-ibb-button-grey border border-ibb-border-grey text-ibb-white text-sm rounded-lg focus:ring-ibb-button-green-hover focus:border-ibb-button-green-hover block w-full pl-10 p-2.5" placeholder="Input date (MM/DD/YYYY)">
+        </div>
+      </div> <!-- End end Date -->
+
+      <button (click)="onSubmit()" type="submit" class="text-white bg-ibb-dark-green hover:bg-ibb-darker-green focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add work experience</button>
     </form>
   </div>
 </div>

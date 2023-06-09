@@ -3,6 +3,7 @@ import {environment} from "../../../environments/environments";
 import {User} from "../user/user";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {Education} from "./education";
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +24,14 @@ export class EducationService {
     });
 
     return this.httpClient.get(environment.baseUrl + "education/find-by-user", { headers: headers, withCredentials: false});
+  }
+
+  createEducation(education:Education): Observable<any> {
+    var headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.user.jwt}`,
+      'Accept': "*/*"
+    });
+    return this.httpClient.post(environment.baseUrl + "education/add-to-user", JSON.stringify(education), { headers: headers, withCredentials: false, responseType: 'text'});
   }
 }
