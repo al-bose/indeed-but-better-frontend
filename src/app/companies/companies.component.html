@@ -9,18 +9,20 @@
           <div *ngIf="c.id == selectedCompany?.id; else elseBlock" class="gap-x-4 p-2 hover: border-2 border-0 border-ibb-button-green-hover rounded-lg hover: cursor-pointer" (click)="changeSelectedCompany(c)">
             <div class="min-w-0">
               <p class="font-bold leading-7 text-ibb-white">{{c.name}}</p>
-              <p class="text-sm leading-6 text-ibb-white">{{c.location}}</p>
-              <p class="text-sm leading-6 text-ibb-white">{{c.size}}</p>
+              <p class="text-sm leading-6 text-ibb-white">{{c.size}} people</p>
               <p class="mt-1 truncate text-xs leading-5 text-ibb-white">{{c.industry}}</p>
+              <p class="text-sm leading-6 text-ibb-white">{{c.address.streetAddress}}</p>
+              <p class="text-sm leading-6 text-ibb-white">{{c.address.city}}, {{c.address.state}} {{c.address.zipCode}}</p>
             </div>
           </div>
           <ng-template #elseBlock>
             <div class="gap-x-4 p-2 hover: border-2 border-0 hover:border-ibb-button-green-hover border-ibb-light-black rounded-lg hover: cursor-pointer" (click)="changeSelectedCompany(c)">
               <div class="min-w-0">
                 <p class="font-bold leading-7 text-ibb-white">{{c.name}}</p>
-                <p class="text-sm leading-6 text-ibb-white">{{c.location}}</p>
-                <p class="text-sm leading-6 text-ibb-white">{{c.size}}</p>
+                <p class="text-sm leading-6 text-ibb-white">{{c.size}} people</p>
                 <p class="mt-1 truncate text-xs leading-5 text-ibb-white">{{c.industry}}</p>
+                <p class="text-sm leading-6 text-ibb-white">{{c.address.streetAddress}}</p>
+                <p class="text-sm leading-6 text-ibb-white">{{c.address.city}}, {{c.address.state}} {{c.address.zipCode}}</p>
               </div>
             </div>
           </ng-template>
@@ -33,9 +35,10 @@
       </div>
       <div class="p-2">
         <p class="mt-6 font-semibold text-lg leading-8 text-ibb-white">Company Details</p>
-        <p class="mt-2 text-sm leading-6 text-ibb-white">{{selectedCompany?.location}}</p>
-        <p class="mt-2 text-sm leading-6 text-ibb-white">{{selectedCompany?.size}}</p>
+        <p class="mt-2 text-sm leading-6 text-ibb-white">{{selectedCompany?.size}} people</p>
         <p class="mt-2 text-sm leading-6 text-ibb-white">{{selectedCompany?.industry}}</p>
+        <p class="mt-4 text-sm leading-6 text-ibb-white">{{selectedCompany?.address?.streetAddress}}</p>
+        <p class="text-sm leading-6 text-ibb-white">{{selectedCompany?.address?.city}}, {{selectedCompany?.address?.state}} {{selectedCompany?.address?.zipCode}}</p>
       </div>
       <div>
         <div class="row p-2">
