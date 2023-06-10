@@ -75,17 +75,25 @@ export class CompaniesComponent {
   }
 
   searchCompanies() : void {
-    this.companyService.searchCompanies(this.searchQuery, this.page)
-      .subscribe(response => {
-        const {content, totalElements, totalPages, size} = response;
-        this.companies = content;
-        this.totalCompanies = totalElements;
-        this.totalPages = totalPages;
-        this.pageSize = size;
-        this.selectedCompany = this.companies.at(0);
-        this.jobListingService.getAllJobListingsByCompanyId(this.selectedCompany?.id!)
-          .subscribe(jobs => {this.jobListings = jobs; this.selectedListing = jobs.at(0)});
-      });
+    if (this.searchQuery !== "")
+    {
+      this.companyService.searchCompanies(this.searchQuery, this.page)
+        .subscribe(response => {
+          const {content, totalElements, totalPages, size} = response;
+          this.companies = content;
+          this.totalCompanies = totalElements;
+          this.totalPages = totalPages;
+          this.pageSize = size;
+          this.selectedCompany = this.companies.at(0);
+          this.jobListingService.getAllJobListingsByCompanyId(this.selectedCompany?.id!)
+            .subscribe(jobs => {this.jobListings = jobs; this.selectedListing = jobs.at(0)});
+        });
+    }
+    else
+    {
+      this.getPageOfCompanies();
+    }
+
   }
 
   getNextPageOfCompanies() : void {
