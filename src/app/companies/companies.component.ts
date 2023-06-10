@@ -20,6 +20,7 @@ export class CompaniesComponent {
   user: User = JSON.parse(localStorage.getItem("currentUser")!);
   jobListings: JobListing[] = [];
   selectedListing? : JobListing;
+  searchQuery : String = "";
 
   ngOnInit() : void
   {
@@ -56,6 +57,16 @@ export class CompaniesComponent {
       .then(() => {
         window.location.reload();
       });
+  }
+
+  searchCompanies() : void {
+    this.companyService.searchCompanies(this.searchQuery)
+      .subscribe(companies => {
+        this.companies = companies;
+        this.selectedCompany = this.companies.at(0);
+        this.jobListingService.getAllJobListingsByCompanyId(this.selectedCompany?.id!)
+          .subscribe(jobs => {this.jobListings = jobs; this.selectedListing = jobs.at(0)});
+      })
   }
 
 }

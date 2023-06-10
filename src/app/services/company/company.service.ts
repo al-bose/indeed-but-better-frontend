@@ -30,4 +30,13 @@ export class CompanyService {
     });
     return this.httpClient.post(environment.baseUrl + "companies/create", JSON.stringify(company), { headers: headers, withCredentials: false, responseType: 'text' });
   }
+
+  searchCompanies(query : String): Observable<any> {
+    var headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.user.jwt}`,
+      'Accept': "*/*"
+    });
+    return this.httpClient.get(environment.baseUrl + "companies/search/" + query, { headers: headers, withCredentials: false})
+  }
 }
