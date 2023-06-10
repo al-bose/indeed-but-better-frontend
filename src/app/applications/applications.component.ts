@@ -44,7 +44,7 @@ export class ApplicationsComponent {
   }
 
   getJobListings() : void {
-    this.jobListingService.getAllJobListings()
+    this.jobListingService.getJobListings(0)
       .subscribe(jobListings => {
         this.recruiterJobListings = jobListings;
       });

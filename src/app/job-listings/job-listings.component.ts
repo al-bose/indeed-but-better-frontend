@@ -19,14 +19,26 @@ export class JobListingsComponent {
   selectedListing? : JobListing;
   user: User = JSON.parse(localStorage.getItem("currentUser")!);
 
+  searchQuery : String = "";
+
+  //job listing pagination properties
+  currentJobPage : number = 0;
+  totalJobs : number = 0;
+  totalJobPages : number = 0;
+  jobPageSize : number = 0;
+
   ngOnInit() : void {
-    this.getJobListings();
+    this.getPageOfJobListings();
   }
 
-  getJobListings() : void {
-    this.jobListingService.getAllJobListings()
-      .subscribe(jobListings => {
-        this.jobListings = jobListings
+  getPageOfJobListings() : void {
+    this.jobListingService.getJobListings(this.currentJobPage)
+      .subscribe(response => {
+        const {content, totalElements, totalPages, size} = response;
+        this.jobListings = content;
+        this.totalJobs = totalElements;
+        this.totalJobPages = totalPages;
+        this.jobPageSize = size;
         this.selectedListing = this.jobListings.at(0);
       });
   }
@@ -58,6 +70,50 @@ export class JobListingsComponent {
           console.log(error);
         }
       );
+  }
+
+  searchJobs() : void {
+    if (this.searchQuery !== "")
+    {
+      this.jobListingService.searchJobs(this.searchQuery, this.currentJobPage)
+        .subscribe(response => {
+          const {content, totalElements, totalPages, size} = response;
+          this.jobListings = content;
+          this.totalJobs = totalElements;
+          this.totalJobPages = totalPages;
+          this.jobPageSize = size;
+          this.selectedListing = this.jobListings.at(0);
+        });
+    }
+    else
+    {
+      this.currentJobPage = 0;
+      this.getPageOfJobListings();
+    }
+  }
+
+  getNextPageOfJobs() : void {
+    this.currentJobPage++;
+
+    if (this.searchQuery !== "")
+    {
+      this.searchJobs();
+    }
+    else {
+      this.getPageOfJobListings();
+    }
+  }
+
+  getPreviousPageOfJobs() : void {
+    this.currentJobPage--;
+
+    if (this.searchQuery !== "")
+    {
+      this.searchJobs();
+    }
+    else {
+      this.getPageOfJobListings();
+    }
   }
 
 }

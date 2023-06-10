@@ -15,9 +15,13 @@ export class JobListingService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllJobListings(): Observable<any> {
-    var headers = new HttpHeaders().set('Content-type', 'application/json');
-    return this.httpClient.get(environment.baseUrl + "job-listings/all", { headers: headers, withCredentials: false})
+  getJobListings(page : number): Observable<any> {
+    var headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.user.jwt}`,
+      'Accept': "*/*"
+    });
+    return this.httpClient.get(environment.baseUrl + "job-listings/page/" + page, { headers: headers, withCredentials: false})
   }
 
   createJobListing(jobListing : JobListing): Observable<any> {
@@ -41,6 +45,15 @@ export class JobListingService {
   getAllJobListingsByUserId(userId : number): Observable<any> {
     var headers = new HttpHeaders().set('Content-type', 'application/json');
     return this.httpClient.get(environment.baseUrl + "job-listings/users/" + userId, { headers: headers, withCredentials: false})
+  }
+
+  searchJobs(query : String, page : number): Observable<any> {
+    var headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.user.jwt}`,
+      'Accept': "*/*"
+    });
+    return this.httpClient.get(environment.baseUrl + "job-listings/search/" + query + "/page/" + page, { headers: headers, withCredentials: false})
   }
 
 }
