@@ -16,23 +16,29 @@ export class CompaniesComponent {
   constructor(private companyService : CompanyService, private router : Router, private jobListingService : JobListingService) {}
 
   companies : Company[] = [];
+  selectedCompany? : Company;
+
+  //company pagination properties
+  page : number = 0;
   totalCompanies : number = 0;
   totalPages : number = 0;
   pageSize : number = 0;
-  selectedCompany? : Company;
+
   user: User = JSON.parse(localStorage.getItem("currentUser")!);
+
   jobListings: JobListing[] = [];
   selectedListing? : JobListing;
+
   searchQuery : String = "";
-  page : number = 0;
+
 
   ngOnInit() : void
   {
-    this.getPage();
+    this.getPageOfCompanies();
   }
 
 
-  getPage() : void {
+  getPageOfCompanies() : void {
     this.companyService.getPage(this.page)
       .subscribe(response => {
         const {content, totalElements, totalPages, size} = response;
@@ -69,13 +75,41 @@ export class CompaniesComponent {
   }
 
   searchCompanies() : void {
-    this.companyService.searchCompanies(this.searchQuery)
-      .subscribe(companies => {
-        this.companies = companies;
+    this.companyService.searchCompanies(this.searchQuery, this.page)
+      .subscribe(response => {
+        const {content, totalElements, totalPages, size} = response;
+        this.companies = content;
+        this.totalCompanies = totalElements;
+        this.totalPages = totalPages;
+        this.pageSize = size;
         this.selectedCompany = this.companies.at(0);
         this.jobListingService.getAllJobListingsByCompanyId(this.selectedCompany?.id!)
           .subscribe(jobs => {this.jobListings = jobs; this.selectedListing = jobs.at(0)});
-      })
+      });
+  }
+
+  getNextPageOfCompanies() : void {
+    this.page++;
+
+    if (this.searchQuery !== "")
+    {
+      this.searchCompanies();
+    }
+    else {
+      this.getPageOfCompanies();
+    }
+  }
+
+  getPreviousPageOfCompanies() : void {
+    this.page--;
+
+    if (this.searchQuery !== "")
+    {
+      this.searchCompanies();
+    }
+    else {
+      this.getPageOfCompanies();
+    }
   }
 
 }
