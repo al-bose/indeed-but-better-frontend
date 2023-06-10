@@ -31,15 +31,6 @@ export class CompaniesComponent {
     this.getPage();
   }
 
-  getCompanies() : void {
-    this.companyService.getAllCompanies()
-      .subscribe(companies => {
-        this.companies = companies;
-        this.selectedCompany = this.companies.at(0);
-        this.jobListingService.getAllJobListingsByCompanyId(this.selectedCompany?.id!)
-          .subscribe(jobs => {this.jobListings = jobs; this.selectedListing = jobs.at(0)});
-      })
-  }
 
   getPage() : void {
     this.companyService.getPage(this.page)
