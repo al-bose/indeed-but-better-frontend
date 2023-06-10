@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import {JobListing} from "../services/jobListing/jobListing";
 import {Router} from "@angular/router";
 import {JobListingService} from "../services/jobListing/jobListing.service";
-import {User} from "../services/user/user";
 import {Company} from "../services/company/company";
 import {CompanyService} from "../services/company/company.service";
 
@@ -15,8 +14,7 @@ export class CreateJobListingComponent {
 
   constructor(private router : Router, private jobListingService : JobListingService, private companyService : CompanyService) {}
 
-  user: User = JSON.parse(localStorage.getItem("currentUser")!);
-  model : JobListing = new JobListing("", "", 0.00, "");
+  model : JobListing = new JobListing("", "", 0.00);
   companies : Company[] = [];
   selectedCompanyId: number;
 
@@ -28,8 +26,19 @@ export class CreateJobListingComponent {
       });
   }
 
+  getSelectedCompany() {
+    for (let c of this.companies) {
+      if (c.id === this.selectedCompanyId) {
+        return c;
+      }
+    }
+    return this.companies[0];
+  }
+
   onSubmit() {
-    this.jobListingService.createJobListing(this.model, this.user.userId, this.selectedCompanyId).subscribe(
+    this.model.company = this.getSelectedCompany();
+
+    this.jobListingService.createJobListing(this.model).subscribe(
       (x:any) => {
         console.log(x);
         this.router.navigate(["/job-listings"])

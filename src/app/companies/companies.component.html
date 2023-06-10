@@ -89,8 +89,8 @@
               <div class="gap-x-4 p-2 hover: border-2 border-0 hover:border-ibb-button-green-hover border-ibb-light-black rounded-lg ">
                 <div class="min-w-0">
                   <p class="font-bold leading-7 text-ibb-white">{{j.jobTitle}}</p>
-                  <p class="text-sm leading-6 text-ibb-white">{{j.location}}</p>
-                  <p class="text-sm leading-6 text-ibb-white">{{j.salary}}</p>
+                  <p class="text-sm leading-6 text-ibb-white">{{j.company.address.city}}, {{j.company.address.state}}</p>
+                  <p class="text-sm leading-6 text-ibb-white">{{j.salary.toLocaleString('en-US', {style: 'currency', currency: 'USD'})}}</p>
                   <p class="mt-1 truncate text-xs leading-5 text-ibb-white">{{j.description}}</p>
                 </div>
               </div>

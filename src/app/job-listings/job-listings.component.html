@@ -9,7 +9,7 @@
           <div *ngIf="j.jobListingId == selectedListing?.jobListingId; else elseBlock" class="gap-x-4 p-2 hover: border-2 border-0 border-ibb-button-green-hover rounded-lg hover: cursor-pointer" (click)="changeSelectedListing(j)">
             <div class="min-w-0">
               <p class="font-bold leading-7 text-ibb-white">{{j.jobTitle}}</p>
-              <p class="text-sm leading-6 text-ibb-white">{{j.location}}</p>
+              <p class="text-sm leading-6 text-ibb-white">{{j.company.address.streetAddress}}</p>
               <p class="text-sm leading-6 text-ibb-white">{{j.salary}}</p>
               <p class="mt-1 truncate text-xs leading-5 text-ibb-white">{{j.description}}</p>
             </div>
@@ -18,7 +18,7 @@
             <div class="gap-x-4 p-2 hover: border-2 border-0 hover:border-ibb-button-green-hover border-ibb-light-black rounded-lg hover: cursor-pointer" (click)="changeSelectedListing(j)">
               <div class="min-w-0">
                 <p class="font-bold leading-7 text-ibb-white">{{j.jobTitle}}</p>
-                <p class="text-sm leading-6 text-ibb-white">{{j.location}}</p>
+                <p class="text-sm leading-6 text-ibb-white">{{j.company.address.streetAddress}}</p>
                 <p class="text-sm leading-6 text-ibb-white">{{j.salary}}</p>
                 <p class="mt-1 truncate text-xs leading-5 text-ibb-white">{{j.description}}</p>
               </div>
@@ -33,7 +33,7 @@
       </div>
       <div>
         <p class="mt-6 font-semibold text-lg leading-8 text-ibb-white">Job Details</p>
-        <p class="mt-2 text-sm leading-6 text-ibb-white">{{selectedListing?.location}}</p>
+        <p class="mt-2 text-sm leading-6 text-ibb-white">{{selectedListing?.company?.address?.streetAddress}}</p>
         <p class="mt-2 text-sm leading-6 text-ibb-white">{{selectedListing?.salary}}</p>
       </div>
       <div>
