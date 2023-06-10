@@ -40,9 +40,9 @@ export class ApplicationsComponent {
 
   ngOnInit() : void {
 
-    if (this.user.userType !== "recruiter")
+    if (this.user.userType === "recruiter")
     {
-      this.getUserApplications();
+      this.getPageOfApplicationsByUser();
     }
     else
     {
@@ -50,12 +50,15 @@ export class ApplicationsComponent {
     }
   }
 
-  getUserApplications() : void {
-    this.applicationService.getApplicationsByUserId(this.user.userId)
-      .subscribe(applications => {
-        this.userApplications = applications;
-        this.selectedApplication = applications[0];
-      })
+  getPageOfApplicationsByUser() : void {
+    this.applicationService.getApplicationsByUser(this.currentApplicationPage)
+      .subscribe(response => {
+        const {content, totalElements, totalPages, size} = response;
+        this.userApplications = content;
+        this.totalApplications = totalElements;
+        this.totalApplicationPages = totalPages;
+        this.applicationPageSize = size;
+      });
   }
 
   getPageOfJobListings() : void {
@@ -90,7 +93,7 @@ export class ApplicationsComponent {
     }
   }
 
-  getPageOfApplications() : void {
+  getPageOfApplicationsByJobListingId() : void {
     this.applicationService.getApplicationsByJobListingId(this.selectedListing?.jobListingId!, this.currentApplicationPage)
       .subscribe(response => {
         const {content, totalElements, totalPages, size} = response;
@@ -104,26 +107,50 @@ export class ApplicationsComponent {
   searchApplications() : void {
     if (this.applicationSearchQuery !== "")
     {
-      this.applicationService.searchApplicationsByJobListingId(this.applicationSearchQuery, this.currentApplicationPage, this.selectedListing?.jobListingId!)
-        .subscribe(response => {
-          const {content, totalElements, totalPages, size} = response;
-          this.jobListingApplications = content;
-          this.totalApplications = totalElements;
-          this.totalApplicationPages = totalPages;
-          this.applicationPageSize = size;
-        });
+
+      if (this.user.userType !== "recruiter")
+      {
+        this.applicationService.searchApplicationsByJobListingId(this.applicationSearchQuery, this.currentApplicationPage, this.selectedListing?.jobListingId!)
+          .subscribe(response => {
+            const {content, totalElements, totalPages, size} = response;
+            this.jobListingApplications = content;
+            this.totalApplications = totalElements;
+            this.totalApplicationPages = totalPages;
+            this.applicationPageSize = size;
+          });
+      }
+      else
+      {
+        this.applicationService.searchApplicationsByUser(this.applicationSearchQuery, this.currentApplicationPage)
+          .subscribe(response => {
+            const {content, totalElements, totalPages, size} = response;
+            this.userApplications = content;
+            this.totalApplications = totalElements;
+            this.totalApplicationPages = totalPages;
+            this.applicationPageSize = size;
+          });
+      }
+
     }
     else
     {
       this.currentApplicationPage = 0;
-      this.getPageOfApplications();
+
+      if (this.user.userType === "recruiter")
+      {
+        this.getPageOfApplicationsByJobListingId();
+      }
+      else
+      {
+        this.getPageOfApplicationsByUser();
+      }
     }
   }
 
   changeSelectedListing(jobListing : JobListing) : void {
     this.selectedListing = jobListing;
     this.currentApplicationPage = 0;
-    this.getPageOfApplications();
+    this.getPageOfApplicationsByJobListingId();
   }
 
   changeSelectedApplication(application : Application) : void {
@@ -161,7 +188,7 @@ export class ApplicationsComponent {
       this.searchApplications();
     }
     else {
-      this.getPageOfApplications();
+      this.getPageOfApplicationsByJobListingId();
     }
   }
 
@@ -173,7 +200,7 @@ export class ApplicationsComponent {
       this.searchApplications();
     }
     else {
-      this.getPageOfApplications();
+      this.getPageOfApplicationsByJobListingId();
     }
   }
 
