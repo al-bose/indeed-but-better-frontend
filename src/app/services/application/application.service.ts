@@ -20,9 +20,13 @@ export class ApplicationService {
     return this.httpClient.get(environment.baseUrl + "applications/all", { headers: headers, withCredentials: false});
   }
 
-  getApplicationsByJobListingId(jobListingId : number): Observable<any> {
-    var headers = new HttpHeaders().set('Content-type', 'application/json');
-    return this.httpClient.get(environment.baseUrl + "applications/job-listings/" + jobListingId, { headers: headers, withCredentials: false});
+  getApplicationsByJobListingId(jobListingId : number, page : number): Observable<any> {
+    var headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.user.jwt}`,
+      'Accept': "*/*"
+    });
+    return this.httpClient.get(environment.baseUrl + "applications/job-listings/" + jobListingId + "/page/" + page, { headers: headers, withCredentials: false});
   }
 
   getApplicationsByUserId(userId : number): Observable<any> {
@@ -37,5 +41,14 @@ export class ApplicationService {
       'Accept': "*/*"
     });
     return this.httpClient.post(environment.baseUrl + "applications/job-listings/" + jobListingId + "/create", JSON.stringify(application), { headers: headers, withCredentials: false, responseType: 'text' });
+  }
+
+  searchApplicationsByJobListingId(query : String, page : number, jobListingId : number): Observable<any> {
+    var headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.user.jwt}`,
+      'Accept': "*/*"
+    });
+    return this.httpClient.get(environment.baseUrl + "applications/job-listings/" + jobListingId + "/search/" + query + "/page/" + page, { headers: headers, withCredentials: false})
   }
 }

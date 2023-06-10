@@ -21,17 +21,32 @@ export class ApplicationsComponent {
   selectedListing? : JobListing;
   jobListingApplications : Application[] = [];
 
+  jobSearchQuery : String = "";
+  applicationSearchQuery : String = "";
+
+  //job listing pagination properties
+  currentJobPage : number = 0;
+  totalJobs : number = 0;
+  totalJobPages : number = 0;
+  jobPageSize : number = 0;
+
+  //application pagination properties
+  currentApplicationPage : number = 0;
+  totalApplications : number = 0;
+  totalApplicationPages : number = 0;
+  applicationPageSize : number = 0;
+
   constructor(private applicationService : ApplicationService, private router : Router, private jobListingService : JobListingService) {}
 
   ngOnInit() : void {
 
-    if (this.user.userType === "recruiter")
+    if (this.user.userType !== "recruiter")
     {
       this.getUserApplications();
     }
     else
     {
-      this.getJobListings();
+      this.getPageOfJobListings();
     }
   }
 
@@ -43,21 +58,123 @@ export class ApplicationsComponent {
       })
   }
 
-  getJobListings() : void {
-    this.jobListingService.getJobListings(0)
-      .subscribe(jobListings => {
-        this.recruiterJobListings = jobListings;
+  getPageOfJobListings() : void {
+    this.jobListingService.getJobListingsByUser(this.currentJobPage)
+      .subscribe(response => {
+        const {content, totalElements, totalPages, size} = response;
+        this.recruiterJobListings = content;
+        this.totalJobs = totalElements;
+        this.totalJobPages = totalPages;
+        this.jobPageSize = size;
+        this.selectedListing = this.recruiterJobListings.at(0);
       });
+  }
+
+  searchJobs() : void {
+    if (this.jobSearchQuery !== "")
+    {
+      this.jobListingService.searchJobsByUser(this.jobSearchQuery, this.currentJobPage)
+        .subscribe(response => {
+          const {content, totalElements, totalPages, size} = response;
+          this.recruiterJobListings = content;
+          this.totalJobs = totalElements;
+          this.totalJobPages = totalPages;
+          this.jobPageSize = size;
+          this.selectedListing = this.recruiterJobListings.at(0);
+        });
+    }
+    else
+    {
+      this.currentJobPage = 0;
+      this.getPageOfJobListings();
+    }
+  }
+
+  getPageOfApplications() : void {
+    this.applicationService.getApplicationsByJobListingId(this.selectedListing?.jobListingId!, this.currentApplicationPage)
+      .subscribe(response => {
+        const {content, totalElements, totalPages, size} = response;
+        this.jobListingApplications = content;
+        this.totalApplications = totalElements;
+        this.totalApplicationPages = totalPages;
+        this.applicationPageSize = size;
+      });
+  }
+
+  searchApplications() : void {
+    if (this.applicationSearchQuery !== "")
+    {
+      this.applicationService.searchApplicationsByJobListingId(this.applicationSearchQuery, this.currentApplicationPage, this.selectedListing?.jobListingId!)
+        .subscribe(response => {
+          const {content, totalElements, totalPages, size} = response;
+          this.jobListingApplications = content;
+          this.totalApplications = totalElements;
+          this.totalApplicationPages = totalPages;
+          this.applicationPageSize = size;
+        });
+    }
+    else
+    {
+      this.currentApplicationPage = 0;
+      this.getPageOfApplications();
+    }
   }
 
   changeSelectedListing(jobListing : JobListing) : void {
     this.selectedListing = jobListing;
-    this.applicationService.getApplicationsByJobListingId(this.selectedListing?.jobListingId!)
-      .subscribe(applications => this.jobListingApplications = applications)
+    this.currentApplicationPage = 0;
+    this.getPageOfApplications();
   }
 
   changeSelectedApplication(application : Application) : void {
     this.selectedApplication = application;
+  }
+
+  getNextPageOfJobs() : void {
+    this.currentJobPage++;
+
+    if (this.jobSearchQuery !== "")
+    {
+      this.searchJobs();
+    }
+    else {
+      this.getPageOfJobListings();
+    }
+  }
+
+  getPreviousPageOfJobs() : void {
+    this.currentJobPage--;
+
+    if (this.jobSearchQuery !== "")
+    {
+      this.searchJobs();
+    }
+    else {
+      this.getPageOfJobListings();
+    }
+  }
+  getNextPageOfApplications() : void {
+    this.currentApplicationPage++;
+
+    if (this.applicationSearchQuery !== "")
+    {
+      this.searchApplications();
+    }
+    else {
+      this.getPageOfApplications();
+    }
+  }
+
+  getPreviousPageOfApplications() : void {
+    this.currentApplicationPage--;
+
+    if (this.applicationSearchQuery !== "")
+    {
+      this.searchApplications();
+    }
+    else {
+      this.getPageOfApplications();
+    }
   }
 
 }
