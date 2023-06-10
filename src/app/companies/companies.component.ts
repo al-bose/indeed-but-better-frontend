@@ -19,16 +19,21 @@ export class CompaniesComponent {
   selectedCompany? : Company;
 
   //company pagination properties
-  page : number = 0;
+  currentCompanyPage : number = 0;
   totalCompanies : number = 0;
-  totalPages : number = 0;
-  pageSize : number = 0;
-
-  user: User = JSON.parse(localStorage.getItem("currentUser")!);
+  totalCompanyPages : number = 0;
+  companyPageSize : number = 0;
 
   jobListings: JobListing[] = [];
   selectedListing? : JobListing;
 
+  //job listing pagination properties
+  currentJobPage : number = 0;
+  totalJobs : number = 0;
+  totalJobPages : number = 0;
+  jobPageSize : number = 0;
+
+  user: User = JSON.parse(localStorage.getItem("currentUser")!);
   searchQuery : String = "";
 
 
@@ -39,24 +44,35 @@ export class CompaniesComponent {
 
 
   getPageOfCompanies() : void {
-    this.companyService.getPage(this.page)
+    this.companyService.getPage(this.currentCompanyPage)
       .subscribe(response => {
         const {content, totalElements, totalPages, size} = response;
         this.companies = content;
         this.totalCompanies = totalElements;
-        this.totalPages = totalPages;
-        this.pageSize = size;
+        this.totalCompanyPages = totalPages;
+        this.companyPageSize = size;
         this.selectedCompany = this.companies.at(0);
-        this.jobListingService.getAllJobListingsByCompanyId(this.selectedCompany?.id!)
-          .subscribe(jobs => {this.jobListings = jobs; this.selectedListing = jobs.at(0)});
+        this.currentJobPage = 0;
+        this.getPageOfJobs();
       })
+  }
+
+  getPageOfJobs() : void {
+    this.jobListingService.getJobListingsByCompanyId(this.selectedCompany?.id!, this.currentJobPage)
+      .subscribe(response => {
+        const {content, totalElements, totalPages, size} = response;
+        this.jobListings = content;
+        this.selectedListing = content[0];
+        this.totalJobs = totalElements;
+        this.totalJobPages = totalPages;
+        this.jobPageSize = size;
+      });
   }
 
   changeSelectedCompany(company : Company) : void {
     this.selectedCompany = company;
-
-    this.jobListingService.getAllJobListingsByCompanyId(this.selectedCompany?.id)
-      .subscribe(jobs => {this.jobListings = jobs; this.selectedListing = jobs.at(0)});
+    this.currentJobPage = 0;
+    this.getPageOfJobs();
   }
 
 
@@ -77,16 +93,16 @@ export class CompaniesComponent {
   searchCompanies() : void {
     if (this.searchQuery !== "")
     {
-      this.companyService.searchCompanies(this.searchQuery, this.page)
+      this.companyService.searchCompanies(this.searchQuery, this.currentCompanyPage)
         .subscribe(response => {
           const {content, totalElements, totalPages, size} = response;
           this.companies = content;
           this.totalCompanies = totalElements;
-          this.totalPages = totalPages;
-          this.pageSize = size;
+          this.totalCompanyPages = totalPages;
+          this.companyPageSize = size;
           this.selectedCompany = this.companies.at(0);
-          this.jobListingService.getAllJobListingsByCompanyId(this.selectedCompany?.id!)
-            .subscribe(jobs => {this.jobListings = jobs; this.selectedListing = jobs.at(0)});
+          this.currentJobPage = 0;
+          this.getPageOfJobs();
         });
     }
     else
@@ -97,7 +113,7 @@ export class CompaniesComponent {
   }
 
   getNextPageOfCompanies() : void {
-    this.page++;
+    this.currentCompanyPage++;
 
     if (this.searchQuery !== "")
     {
@@ -109,7 +125,7 @@ export class CompaniesComponent {
   }
 
   getPreviousPageOfCompanies() : void {
-    this.page--;
+    this.currentCompanyPage--;
 
     if (this.searchQuery !== "")
     {
@@ -119,7 +135,17 @@ export class CompaniesComponent {
       this.getPageOfCompanies();
     }
   }
+  getNextPageOfJobs() : void {
+    this.currentJobPage++;
+    this.getPageOfJobs();
 
+
+  }
+
+  getPreviousPageOfJobs() : void {
+    this.currentJobPage--;
+    this.getPageOfJobs();
+  }
 }
 
 

@@ -6,7 +6,7 @@
         <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
       </div>
       <input [(ngModel)]="searchQuery" type="search" name="search" id="company-search" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 " placeholder="Search by Name, Industry, City, State..." required>
-      <button type="submit" class="text-ibb-light-black absolute right-2.5 bottom-2.5 bg-ibb-dark-green font-medium rounded-lg text-sm px-4 py-2" (click)="page = 0; searchCompanies()">Search</button>
+      <button type="submit" class="text-ibb-light-black absolute right-2.5 bottom-2.5 bg-ibb-dark-green font-medium rounded-lg text-sm px-4 py-2" (click)="currentCompanyPage = 0; searchCompanies()">Search</button>
     </div>
   </form>
   <div>
@@ -43,15 +43,15 @@
       <div class="flex flex-col items-center" *ngIf="totalCompanies > 0; else noCompaniesFound">
         <!-- Help text -->
         <span class="text-sm text-ibb-white">
-      Showing <span class="font-semibold text-ibb-white">{{page * pageSize + 1}}</span> to <span class="font-semibold text-ibb-white">{{(page + 1) * pageSize > totalCompanies ? totalCompanies : (page + 1) * pageSize}}</span> of <span class="font-semibold text-ibb-white">{{totalCompanies}}</span> Companies
+      Showing <span class="font-semibold text-ibb-white">{{currentCompanyPage * companyPageSize + 1}}</span> to <span class="font-semibold text-ibb-white">{{(currentCompanyPage + 1) * companyPageSize > totalCompanies ? totalCompanies : (currentCompanyPage + 1) * companyPageSize}}</span> of <span class="font-semibold text-ibb-white">{{totalCompanies}}</span> Companies
   </span>
         <div class="inline-flex mt-2 xs:mt-0">
           <!-- Buttons -->
-          <button class="inline-flex items-center px-4 py-2 text-sm font-medium text-ibb-white rounded-l hover:bg-ibb-dark-green hover:text-ibb-light-black" *ngIf="page > 0" (click) = "getPreviousPageOfCompanies()">
+          <button class="inline-flex items-center px-4 py-2 text-sm font-medium text-ibb-white rounded-l hover:bg-ibb-dark-green hover:text-ibb-light-black" *ngIf="currentCompanyPage > 0" (click) = "getPreviousPageOfCompanies()">
             <svg aria-hidden="true" class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg>
             Prev
           </button>
-          <button class="inline-flex items-center px-4 py-2 text-sm font-medium border-0 rounded-r text-ibb-white hover:bg-ibb-dark-green hover:text-ibb-light-black" *ngIf="page + 1 < totalPages" (click) = "getNextPageOfCompanies()">
+          <button class="inline-flex items-center px-4 py-2 text-sm font-medium border-0 rounded-r text-ibb-white hover:bg-ibb-dark-green hover:text-ibb-light-black" *ngIf="currentCompanyPage + 1 < totalCompanyPages" (click) = "getNextPageOfCompanies()">
             Next
             <svg aria-hidden="true" class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
           </button>
@@ -59,7 +59,7 @@
       </div>
 
       <ng-template #noCompaniesFound>
-        <div  class="flex flex-col items-center">
+        <div class="flex flex-col items-center mt-6">
           <span class="text-sm text-ibb-white font-medium">No Companies Found...</span>
         </div>
 
@@ -96,6 +96,30 @@
               </div>
             </li>
           </ul>
+          <div class="flex flex-col items-center" *ngIf="totalJobs > 0; else noJobsFound">
+            <!-- Help text -->
+            <span class="text-sm text-ibb-white">
+      Showing <span class="font-semibold text-ibb-white">{{currentJobPage * jobPageSize + 1}}</span> to <span class="font-semibold text-ibb-white">{{(currentJobPage + 1) * jobPageSize > totalJobs ? totalJobs : (currentJobPage + 1) * jobPageSize}}</span> of <span class="font-semibold text-ibb-white">{{totalJobs}}</span> Job Listings
+  </span>
+            <div class="inline-flex mt-2 xs:mt-0">
+              <!-- Buttons -->
+              <button class="inline-flex items-center px-4 py-2 text-sm font-medium text-ibb-white rounded-l hover:bg-ibb-dark-green hover:text-ibb-light-black" *ngIf="currentJobPage > 0" (click) = "getPreviousPageOfJobs()">
+                <svg aria-hidden="true" class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg>
+                Prev
+              </button>
+              <button class="inline-flex items-center px-4 py-2 text-sm font-medium border-0 rounded-r text-ibb-white hover:bg-ibb-dark-green hover:text-ibb-light-black" *ngIf="currentJobPage + 1 < totalJobPages" (click) = "getNextPageOfJobs()">
+                Next
+                <svg aria-hidden="true" class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+              </button>
+            </div>
+          </div>
+
+          <ng-template #noJobsFound>
+            <div  class="flex flex-col items-center">
+              <span class="text-sm text-ibb-white font-medium">No Job Listings Found...</span>
+            </div>
+
+          </ng-template>
         </div>
       </div>
     </div>
