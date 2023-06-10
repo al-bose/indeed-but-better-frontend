@@ -68,18 +68,18 @@
     </div>
     <div class="col-span-4" *ngIf="selectedCompany">
       <div class="p-2">
-        <p class="text-3xl font-bold text-ibb-white sm:text-4xl snap-center">{{selectedCompany?.name}}</p>
+        <p class="text-3xl font-bold text-ibb-white sm:text-4xl snap-center">{{selectedCompany.name}}</p>
       </div>
       <div class="p-2">
         <p class="mt-6 font-semibold text-lg leading-8 text-ibb-white">Company Details</p>
-        <p class="mt-2 text-sm leading-6 text-ibb-white">{{selectedCompany?.industry}}</p>
-        <p class="text-sm leading-6 text-ibb-white">{{selectedCompany?.size}} people</p>
-        <p class="mt-4 text-sm leading-6 text-ibb-white">{{selectedCompany?.address?.streetAddress}}</p>
-        <p class="text-sm leading-6 text-ibb-white">{{selectedCompany?.address?.city}}, {{selectedCompany?.address?.state}} {{selectedCompany?.address?.zipCode}}</p>
+        <p class="mt-2 text-sm leading-6 text-ibb-white">{{selectedCompany.industry}}</p>
+        <p class="text-sm leading-6 text-ibb-white">{{selectedCompany.size}} people</p>
+        <p class="mt-4 text-sm leading-6 text-ibb-white">{{selectedCompany.address.streetAddress}}</p>
+        <p class="text-sm leading-6 text-ibb-white">{{selectedCompany.address.city}}, {{selectedCompany.address.state}} {{selectedCompany.address.zipCode}}</p>
       </div>
       <div>
         <div class="row p-2">
-          <p class="mt-2 font-semibold text-lg leading-8 text-ibb-white">{{selectedCompany?.name}}'s Job Listings</p>
+          <p class="mt-2 font-semibold text-lg leading-8 text-ibb-white">{{selectedCompany.name}}'s Job Listings</p>
           <button (click)="navigateToJobListingCreation()" *ngIf="'recruiter' === 'recruiter'" class="bg-ibb-dark-green text-ibb-light-black rounded-md p-2 mt-6 font-medium">Create a Job Listing</button>
         </div>
 
