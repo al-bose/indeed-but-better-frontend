@@ -58,7 +58,7 @@ export class JobListingsComponent {
 
    let application = new Application("Testing application creation", this.user.name + "'s Application To " + this.selectedListing?.jobTitle);
 
-    this.applicationService.createApplication(application, this.user.userId, this.selectedListing?.jobListingId!)
+    this.applicationService.createApplication(application, this.selectedListing?.jobListingId!)
       .subscribe((x:any) => {
           console.log(x);
           this.router.navigate(["/job-listings"])
