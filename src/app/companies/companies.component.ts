@@ -16,21 +16,39 @@ export class CompaniesComponent {
   constructor(private companyService : CompanyService, private router : Router, private jobListingService : JobListingService) {}
 
   companies : Company[] = [];
+  totalCompanies : number = 0;
+  totalPages : number = 0;
+  pageSize : number = 0;
   selectedCompany? : Company;
   user: User = JSON.parse(localStorage.getItem("currentUser")!);
   jobListings: JobListing[] = [];
   selectedListing? : JobListing;
   searchQuery : String = "";
+  page : number = 0;
 
   ngOnInit() : void
   {
-    this.getCompanies();
+    this.getPage();
   }
 
   getCompanies() : void {
     this.companyService.getAllCompanies()
       .subscribe(companies => {
         this.companies = companies;
+        this.selectedCompany = this.companies.at(0);
+        this.jobListingService.getAllJobListingsByCompanyId(this.selectedCompany?.id!)
+          .subscribe(jobs => {this.jobListings = jobs; this.selectedListing = jobs.at(0)});
+      })
+  }
+
+  getPage() : void {
+    this.companyService.getPage(this.page)
+      .subscribe(response => {
+        const {content, totalElements, totalPages, size} = response;
+        this.companies = content;
+        this.totalCompanies = totalElements;
+        this.totalPages = totalPages;
+        this.pageSize = size;
         this.selectedCompany = this.companies.at(0);
         this.jobListingService.getAllJobListingsByCompanyId(this.selectedCompany?.id!)
           .subscribe(jobs => {this.jobListings = jobs; this.selectedListing = jobs.at(0)});

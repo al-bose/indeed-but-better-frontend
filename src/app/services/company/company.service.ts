@@ -39,4 +39,13 @@ export class CompanyService {
     });
     return this.httpClient.get(environment.baseUrl + "companies/search/" + query, { headers: headers, withCredentials: false})
   }
+
+  getPage(page : number): Observable<any> {
+    var headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.user.jwt}`,
+      'Accept': "*/*"
+    });
+    return this.httpClient.get(environment.baseUrl + "companies/page/" + page, { headers: headers, withCredentials: false})
+  }
 }

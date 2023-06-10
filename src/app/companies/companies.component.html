@@ -10,7 +10,7 @@
     </div>
   </form>
   <div>
-    <button (click)="navigateToCompanyCreation()" *ngIf="'recruiter' === 'recruiter'" class="bg-ibb-dark-green text-ibb-light-black rounded-md p-2 mt-6">Create a Company</button>
+    <button (click)="navigateToCompanyCreation()" *ngIf="'recruiter' === 'recruiter'" class="bg-ibb-dark-green text-ibb-light-black rounded-md p-2 mt-6 font-medium">Create a Company</button>
   </div>
   <div class="grid grid-cols-5 gap-10 bg-ibb-light-black">
     <div class="col-span-1">
@@ -20,9 +20,9 @@
           <div *ngIf="c.id == selectedCompany?.id; else elseBlock" class="gap-x-4 p-2 hover: border-2 border-0 border-ibb-button-green-hover rounded-lg hover: cursor-pointer" (click)="changeSelectedCompany(c)">
             <div class="min-w-0">
               <p class="font-bold leading-7 text-ibb-white">{{c.name}}</p>
+              <p class="mt-1 truncate text-xs leading-6 text-ibb-white">{{c.industry}}</p>
               <p class="text-sm leading-6 text-ibb-white">{{c.size}} people</p>
-              <p class="mt-1 truncate text-xs leading-5 text-ibb-white">{{c.industry}}</p>
-              <p class="text-sm leading-6 text-ibb-white">{{c.address.streetAddress}}</p>
+              <p class="mt-2 text-sm leading-6 text-ibb-white">{{c.address.streetAddress}}</p>
               <p class="text-sm leading-6 text-ibb-white">{{c.address.city}}, {{c.address.state}} {{c.address.zipCode}}</p>
             </div>
           </div>
@@ -31,7 +31,7 @@
               <div class="min-w-0">
                 <p class="font-bold leading-7 text-ibb-white">{{c.name}}</p>
                 <p class="text-sm leading-6 text-ibb-white">{{c.size}} people</p>
-                <p class="mt-1 truncate text-xs leading-5 text-ibb-white">{{c.industry}}</p>
+                <p class="mt-1 truncate text-xs leading-6 text-ibb-white">{{c.industry}}</p>
                 <p class="text-sm leading-6 text-ibb-white">{{c.address.streetAddress}}</p>
                 <p class="text-sm leading-6 text-ibb-white">{{c.address.city}}, {{c.address.state}} {{c.address.zipCode}}</p>
               </div>
@@ -39,6 +39,25 @@
           </ng-template>
         </li>
       </ul>
+
+      <div class="flex flex-col items-center">
+        <!-- Help text -->
+        <span class="text-sm text-ibb-white">
+      Showing <span class="font-semibold text-ibb-white">{{page * pageSize + 1}}</span> to <span class="font-semibold text-ibb-white">{{(page + 1) * pageSize > totalCompanies ? totalCompanies : (page + 1) * pageSize}}</span> of <span class="font-semibold text-ibb-white">{{totalCompanies}}</span> Companies
+  </span>
+        <div class="inline-flex mt-2 xs:mt-0">
+          <!-- Buttons -->
+          <button class="inline-flex items-center px-4 py-2 text-sm font-medium text-ibb-white rounded-l hover:bg-ibb-dark-green hover:text-ibb-light-black">
+            <svg aria-hidden="true" class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg>
+            Prev
+          </button>
+          <button class="inline-flex items-center px-4 py-2 text-sm font-medium border-0 rounded-r text-ibb-white hover:bg-ibb-dark-green hover:text-ibb-light-black">
+            Next
+            <svg aria-hidden="true" class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+
     </div>
     <div class="col-span-4">
       <div class="p-2">
@@ -46,15 +65,15 @@
       </div>
       <div class="p-2">
         <p class="mt-6 font-semibold text-lg leading-8 text-ibb-white">Company Details</p>
-        <p class="mt-2 text-sm leading-6 text-ibb-white">{{selectedCompany?.size}} people</p>
         <p class="mt-2 text-sm leading-6 text-ibb-white">{{selectedCompany?.industry}}</p>
+        <p class="text-sm leading-6 text-ibb-white">{{selectedCompany?.size}} people</p>
         <p class="mt-4 text-sm leading-6 text-ibb-white">{{selectedCompany?.address?.streetAddress}}</p>
         <p class="text-sm leading-6 text-ibb-white">{{selectedCompany?.address?.city}}, {{selectedCompany?.address?.state}} {{selectedCompany?.address?.zipCode}}</p>
       </div>
       <div>
         <div class="row p-2">
           <p class="mt-2 font-semibold text-lg leading-8 text-ibb-white">{{selectedCompany?.name}}'s Job Listings</p>
-          <button (click)="navigateToJobListingCreation()" *ngIf="'recruiter' === 'recruiter'" class="bg-ibb-dark-green text-ibb-light-black rounded-md p-2 mt-6">Create a Job Listing</button>
+          <button (click)="navigateToJobListingCreation()" *ngIf="'recruiter' === 'recruiter'" class="bg-ibb-dark-green text-ibb-light-black rounded-md p-2 mt-6 font-medium">Create a Job Listing</button>
         </div>
 
         <div>
