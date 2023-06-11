@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
-import {environment} from "../../../environments/environment";
-import {User} from "../user/user";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {WorkExperience} from "./work-experience";
+import { environment } from "../../../environments/environment";
+import { User } from "../user/user";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { WorkExperience } from "./work-experience";
+import { UserService } from "../user/user.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class WorkExperienceService {
 
+ constructor(private httpClient: HttpClient, private userService:UserService) { }
+  user: User = this.userService.getCurrentUser();
   baseUrl = environment.baseUrl;
-  user: User = JSON.parse(localStorage.getItem('currentUser')!);
-
-  constructor(private httpClient: HttpClient) { }
 
   getWorkExperienceForUser(): Observable<any> {
     var headers = new HttpHeaders({
@@ -32,5 +32,15 @@ export class WorkExperienceService {
       'Accept': "*/*"
     });
     return this.httpClient.post(environment.baseUrl + "work-experience/add-to-user", JSON.stringify(workExperience), { headers: headers, withCredentials: false, responseType: 'text'});
+  }
+
+  deleteWorkExperience(workExperience:WorkExperience): Observable<any> {
+    var headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.user.jwt}`,
+      'Accept': "*/*"
+    });
+
+    return this.httpClient.delete(environment.baseUrl + `work-experience/delete/${workExperience.workExperienceId}`, { headers: headers, withCredentials: false, responseType: 'text'});
   }
 }
