@@ -6,6 +6,7 @@ import { FirstTimeSetupComponent } from './pages/first-time-setup/first-time-set
 import {RouterLink} from "@angular/router";
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
+import { AddEducationComponent } from './pages/add-education/add-education.component';
 
 
 
@@ -14,7 +15,8 @@ import { UserSettingsComponent } from './pages/user-settings/user-settings.compo
     LoginComponent,
     FirstTimeSetupComponent,
     UserProfileComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    AddEducationComponent
   ],
   imports: [
     CommonModule,

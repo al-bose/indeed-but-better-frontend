@@ -15,7 +15,7 @@ import { CreateJobListingComponent } from './create-job-listing/create-job-listi
 import { FormsModule } from '@angular/forms';
 import { CreateCompanyComponent } from './create-company/create-company.component';
 import { AddWorkExperienceComponent } from './add-work-experience/add-work-experience.component';
-import { AddEducationComponent } from './add-education/add-education.component';
+import { AddEducationComponent } from './user-module/pages/add-education/add-education.component';
 import { SharedModule } from "./shared/shared.module";
 import { UserModule } from "./user-module/user.module";
 import { LoginComponent } from "./user-module/pages/login/login.component";
@@ -32,8 +32,7 @@ import {UserSettingsComponent} from "./user-module/pages/user-settings/user-sett
     NotificationsComponent,
     CreateJobListingComponent,
     CreateCompanyComponent,
-    AddWorkExperienceComponent,
-    AddEducationComponent
+    AddWorkExperienceComponent
   ],
   imports: [
     HttpClientModule,
@@ -45,7 +44,7 @@ import {UserSettingsComponent} from "./user-module/pages/user-settings/user-sett
       {path: 'user/first-time-setup', component: FirstTimeSetupComponent},
       {path: 'user/profile', component: UserProfileComponent},
       {path: 'user/settings', component: UserSettingsComponent},
-      {path: 'user-profile/add-education', component: AddEducationComponent},
+      {path: 'user/profile/add-education', component: AddEducationComponent},
       {path: 'user-profile/add-work-experience', component: AddWorkExperienceComponent},
       {path: 'job-listings', component: JobListingsComponent},
       {path: 'companies', component: CompaniesComponent},
