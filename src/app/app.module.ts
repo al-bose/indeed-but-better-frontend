@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 import { CreateCompanyComponent } from './create-company/create-company.component';
 import { AddWorkExperienceComponent } from './add-work-experience/add-work-experience.component';
 import { AddEducationComponent } from './add-education/add-education.component';
+import { SharedModule } from "./shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { AddEducationComponent } from './add-education/add-education.component';
     ]),
     BrowserAnimationsModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
