@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import {User} from "../services/user/user";
-import {WorkExperience} from "../services/work-experience/work-experience";
+import {User} from "../../../services/user/user";
 import {Router} from "@angular/router";
-import {WorkExperienceService} from "../services/work-experience/work-experience.service";
-
+import {WorkExperienceService} from "../../../services/work-experience/work-experience.service";
+import {WorkExperience} from "../../../services/work-experience/work-experience";
 
 @Component({
   selector: 'app-add-work-experience',
