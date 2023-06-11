@@ -3,10 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { RouterModule } from "@angular/router";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MaterialModule } from "./material/material.module";
 import { JobListingsComponent } from './job-listings/job-listings.component';
-import { UserProfileComponent } from './user-module/pages/user-profile/user-profile.component';
+import { UserProfileComponent } from './user/pages/user-profile/user-profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CompaniesComponent } from './companies/companies.component';
 import { ApplicationsComponent } from './applications/applications.component';
@@ -14,14 +14,14 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { CreateJobListingComponent } from './create-job-listing/create-job-listing.component';
 import { FormsModule } from '@angular/forms';
 import { CreateCompanyComponent } from './create-company/create-company.component';
-import { AddWorkExperienceComponent } from './user-module/pages/add-work-experience/add-work-experience.component';
-import { AddEducationComponent } from './user-module/pages/add-education/add-education.component';
+import { AddWorkExperienceComponent } from './user/pages/add-work-experience/add-work-experience.component';
+import { AddEducationComponent } from './user/pages/add-education/add-education.component';
 import { SharedModule } from "./shared/shared.module";
-import { UserModule } from "./user-module/user.module";
-import { LoginComponent } from "./user-module/pages/login/login.component";
-import {FirstTimeSetupComponent} from "./user-module/pages/first-time-setup/first-time-setup.component";
-import {UserSettingsComponent} from "./user-module/pages/user-settings/user-settings.component";
-import {EditSkillsComponent} from "./user-module/pages/edit-skills/edit-skills.component";
+import { UserModule } from "./user/user.module";
+import { LoginComponent } from "./user/pages/login/login.component";
+import { FirstTimeSetupComponent } from "./user/pages/first-time-setup/first-time-setup.component";
+import { UserSettingsComponent } from "./user/pages/user-settings/user-settings.component";
+import { EditSkillsComponent } from "./user/pages/edit-skills/edit-skills.component";
 
 @NgModule({
   declarations: [
