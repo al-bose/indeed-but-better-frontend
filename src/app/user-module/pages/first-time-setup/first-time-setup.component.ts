@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import {Router} from "@angular/router";
-import {User} from "../services/user/user";
-import {UserService} from "../services/user/user.service";
+import { User } from "../../../services/user/user";
+import { Router } from "@angular/router";
+import { UserService } from "../../../services/user/user.service";
 
 @Component({
-  selector: 'app-first-time-user-setup',
-  templateUrl: './first-time-user-setup.component.html',
-  styleUrls: ['./first-time-user-setup.component.css']
+  selector: 'app-first-time-setup',
+  templateUrl: './first-time-setup.component.html',
+  styleUrls: ['./first-time-setup.component.css']
 })
-export class FirstTimeUserSetupComponent {
+export class FirstTimeSetupComponent {
 
   user: User = JSON.parse(localStorage.getItem("currentUser")!);
   constructor(private router: Router, private userService: UserService) {}

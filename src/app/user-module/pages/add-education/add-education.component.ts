@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import {Education} from "../services/education/education";
+import {User} from "../../../services/user/user";
 import {Router} from "@angular/router";
-import {EducationService} from "../services/education/education.service";
-import {User} from "../services/user/user";
+import {EducationService} from "../../../services/education/education.service";
+import {Education} from "../../../services/education/education";
 
 @Component({
   selector: 'app-add-education',
@@ -21,7 +21,7 @@ export class AddEducationComponent {
     this.educationService.createEducation(this.model).subscribe(
       response => {
         console.log(response);
-        this.router.navigate(['/user-profile'])
+        this.router.navigate(['/user/profile'])
           .then(() => {
             window.location.reload();
           });
@@ -30,7 +30,7 @@ export class AddEducationComponent {
   }
 
   cancelSubmit() {
-    this.router.navigate(['/user-profile'])
+    this.router.navigate(['/user/profile'])
       .then(() => {
         window.location.reload();
       });

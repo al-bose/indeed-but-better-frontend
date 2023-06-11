@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import {User} from "../services/user/user";
+import {User} from "../../../services/user/user";
+import {Skill} from "../../../services/skill/skill";
+import {WorkExperience} from "../../../services/work-experience/work-experience";
+import {Education} from "../../../services/education/education";
 import {Router} from "@angular/router";
-import {UserService} from "../services/user/user.service";
-import {Skill} from "../services/skill/skill";
-import {SkillService} from "../services/skill/skill.service";
-import {WorkExperienceService} from "../services/work-experience/work-experience.service";
-import {WorkExperience} from "../services/work-experience/work-experience";
-import {EducationService} from "../services/education/education.service";
-import {Education} from "../services/education/education";
+import {UserService} from "../../../services/user/user.service";
+import {SkillService} from "../../../services/skill/skill.service";
+import {WorkExperienceService} from "../../../services/work-experience/work-experience.service";
+import {EducationService} from "../../../services/education/education.service";
 
 @Component({
   selector: 'app-user-profile',
