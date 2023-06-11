@@ -5,6 +5,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { FirstTimeSetupComponent } from './pages/first-time-setup/first-time-setup.component';
 import {RouterLink} from "@angular/router";
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
 
 
 
@@ -12,7 +13,8 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
   declarations: [
     LoginComponent,
     FirstTimeSetupComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    UserSettingsComponent
   ],
   imports: [
     CommonModule,
