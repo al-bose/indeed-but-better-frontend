@@ -21,7 +21,7 @@ export class AddEducationComponent {
     this.educationService.createEducation(this.model).subscribe(
       response => {
         console.log(response);
-        this.router.navigate(['/user-profile'])
+        this.router.navigate(['/user/profile'])
           .then(() => {
             window.location.reload();
           });
@@ -30,7 +30,7 @@ export class AddEducationComponent {
   }
 
   cancelSubmit() {
-    this.router.navigate(['/user-profile'])
+    this.router.navigate(['/user/profile'])
       .then(() => {
         window.location.reload();
       });

@@ -35,7 +35,7 @@
             <a routerLink="/job-listings" routerLinkActive="bg-ibb-button-grey" class="text-ibb-white hover:bg-ibb-button-grey hover:text-white rounded-md px-3 py-2 text-sm font-medium">Job Listings</a>
             <a routerLink="/companies" routerLinkActive="bg-ibb-button-grey" class="text-ibb-white hover:bg-ibb-button-grey hover:text-white rounded-md px-3 py-2 text-sm font-medium">Companies</a>
             <a routerLink="/applications" routerLinkActive="bg-ibb-button-grey" class="text-ibb-white hover:bg-ibb-button-grey hover:text-white rounded-md px-3 py-2 text-sm font-medium">Applications</a>
-            <a routerLink="/user-profile" routerLinkActive="bg-ibb-button-grey" class="text-ibb-white hover:bg-ibb-button-grey hover:text-white rounded-md px-3 py-2 text-sm font-medium">Profile</a>
+            <a routerLink="/user/profile" routerLinkActive="bg-ibb-button-grey" class="text-ibb-white hover:bg-ibb-button-grey hover:text-white rounded-md px-3 py-2 text-sm font-medium">Profile</a>
           </div>
         </div>
       </div>
@@ -61,7 +61,7 @@
             <div *ngIf="displayUserMenu">
               <div class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-ibb-border-grey focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                 <!-- Active: "bg-gray-100", Not Active: "" -->
-                <a routerLink="user-profile" class="block px-4 py-2 text-sm text-ibb-dark-green" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
+                <a routerLink="user/profile" class="block px-4 py-2 text-sm text-ibb-dark-green" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
                 <a href="#" class="block px-4 py-2 text-sm text-ibb-dark-green" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
                 <button (click)="logout()" class="block px-4 py-2 text-sm text-ibb-dark-green" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</button>
               </div>

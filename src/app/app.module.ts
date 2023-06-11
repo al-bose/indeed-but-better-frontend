@@ -6,7 +6,7 @@ import { RouterModule } from "@angular/router";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { MaterialModule } from "./material/material.module";
 import { JobListingsComponent } from './job-listings/job-listings.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserProfileComponent } from './user-module/pages/user-profile/user-profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CompaniesComponent } from './companies/companies.component';
 import { ApplicationsComponent } from './applications/applications.component';
@@ -26,7 +26,6 @@ import {FirstTimeSetupComponent} from "./user-module/pages/first-time-setup/firs
   declarations: [
     AppComponent,
     JobListingsComponent,
-    UserProfileComponent,
     DashboardComponent,
     CompaniesComponent,
     ApplicationsComponent,
@@ -45,7 +44,7 @@ import {FirstTimeSetupComponent} from "./user-module/pages/first-time-setup/firs
       {path: 'dashboard', component: DashboardComponent},
       {path: 'user/login', component: LoginComponent},
       {path: 'user/first-time-setup', component: FirstTimeSetupComponent},
-      {path: 'user-profile', component: UserProfileComponent},
+      {path: 'user/profile', component: UserProfileComponent},
       {path: 'user-profile/add-education', component: AddEducationComponent},
       {path: 'user-profile/add-work-experience', component: AddWorkExperienceComponent},
       {path: 'job-listings', component: JobListingsComponent},

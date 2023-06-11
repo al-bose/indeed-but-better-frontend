@@ -4,13 +4,15 @@ import { LoginComponent } from './pages/login/login.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { FirstTimeSetupComponent } from './pages/first-time-setup/first-time-setup.component';
 import {RouterLink} from "@angular/router";
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 
 
 
 @NgModule({
   declarations: [
     LoginComponent,
-    FirstTimeSetupComponent
+    FirstTimeSetupComponent,
+    UserProfileComponent
   ],
   imports: [
     CommonModule,

@@ -38,7 +38,7 @@ export class AddWorkExperienceComponent {
       this.companyName, this.startDate, this.endDate, this.description, this.location)).subscribe(
       response => {
         console.log(response);
-        this.router.navigate(['/user-profile'])
+        this.router.navigate(['/user/profile'])
           .then(() => {
             window.location.reload();
           });
@@ -47,7 +47,7 @@ export class AddWorkExperienceComponent {
   }
 
   cancelSubmit() {
-    this.router.navigate(['/user-profile'])
+    this.router.navigate(['/user/profile'])
       .then(() => {
         window.location.reload();
       });
