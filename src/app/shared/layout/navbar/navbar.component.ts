@@ -21,7 +21,7 @@ export class NavbarComponent {
   }
 
   navigateToLoginPage() {
-    this.router.navigate(['/login'])
+    this.router.navigate(['/user/login'])
       .then(() => {
         window.location.reload();
       });

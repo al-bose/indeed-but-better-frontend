@@ -1,11 +1,10 @@
-import { Component, OnInit, NgZone } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
-import { CredentialResponse, PromptMomentNotification } from 'google-one-tap';
-import {environment} from "../../environments/environments";
-import {User} from "../services/user/user";
-import {UserService} from "../services/user/user.service";
-
+import { Component } from '@angular/core';
+import { FormBuilder } from "@angular/forms";
+import { Router } from "@angular/router";
+import { UserService } from "../../../services/user/user.service";
+import { environment } from "../../../../environments/environments";
+import {CredentialResponse, PromptMomentNotification} from "google-one-tap";
+import {User} from "../../../services/user/user";
 
 @Component({
   selector: 'app-login',
@@ -16,8 +15,7 @@ export class LoginComponent {
 
   constructor(private fb: FormBuilder,
               private router: Router,
-              private userService: UserService,
-              private _ngZone: NgZone) {}
+              private userService: UserService) {}
 
   private clientId = environment.clientId;
 
@@ -58,7 +56,7 @@ export class LoginComponent {
               window.location.reload();
             });
         }
-        },
+      },
       (error:any) => {
         console.log(error);
       }

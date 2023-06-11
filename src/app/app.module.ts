@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { RouterModule } from "@angular/router";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import { LoginComponent } from './login/login.component';
 import { MaterialModule } from "./material/material.module";
 import { JobListingsComponent } from './job-listings/job-listings.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
@@ -20,11 +19,12 @@ import { CreateCompanyComponent } from './create-company/create-company.componen
 import { AddWorkExperienceComponent } from './add-work-experience/add-work-experience.component';
 import { AddEducationComponent } from './add-education/add-education.component';
 import { SharedModule } from "./shared/shared.module";
+import { UserModule } from "./user-module/user.module";
+import { LoginComponent } from "./user-module/pages/login/login.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     JobListingsComponent,
     UserProfileComponent,
     DashboardComponent,
@@ -44,7 +44,7 @@ import { SharedModule } from "./shared/shared.module";
     RouterModule.forRoot([
       {path: '', component: DashboardComponent},
       {path: 'dashboard', component: DashboardComponent},
-      {path: 'login', component: LoginComponent},
+      {path: 'user/login', component: LoginComponent},
       {path: 'user-profile', component: UserProfileComponent},
       {path: 'user-profile/add-education', component: AddEducationComponent},
       {path: 'user-profile/add-work-experience', component: AddWorkExperienceComponent},
@@ -60,7 +60,8 @@ import { SharedModule } from "./shared/shared.module";
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
