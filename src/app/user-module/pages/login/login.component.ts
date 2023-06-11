@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder } from "@angular/forms";
 import { Router } from "@angular/router";
 import { UserService } from "../../../services/user/user.service";
-import { environment } from "../../../../environments/environments";
+import { environment } from "../../../../environments/environment";
 import {CredentialResponse, PromptMomentNotification} from "google-one-tap";
 import {User} from "../../../services/user/user";
 
