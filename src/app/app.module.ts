@@ -21,6 +21,7 @@ import { UserModule } from "./user-module/user.module";
 import { LoginComponent } from "./user-module/pages/login/login.component";
 import {FirstTimeSetupComponent} from "./user-module/pages/first-time-setup/first-time-setup.component";
 import {UserSettingsComponent} from "./user-module/pages/user-settings/user-settings.component";
+import {EditSkillsComponent} from "./user-module/pages/edit-skills/edit-skills.component";
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import {UserSettingsComponent} from "./user-module/pages/user-settings/user-sett
       {path: 'user/settings', component: UserSettingsComponent},
       {path: 'user/profile/add-education', component: AddEducationComponent},
       {path: 'user/profile/add-work-experience', component: AddWorkExperienceComponent},
+      {path: 'user/profile/edit-skills', component: EditSkillsComponent},
       {path: 'job-listings', component: JobListingsComponent},
       {path: 'companies', component: CompaniesComponent},
       {path: 'applications', component: ApplicationsComponent},

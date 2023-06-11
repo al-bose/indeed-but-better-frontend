@@ -1,4 +1,4 @@
-<div class="bg-transparent mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mt-6 h-screen">
+<div class="bg-transparent mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mt-6 min-h-screen mb-20">
 
   <div class="grid grid-cols-2 gap-10 bg-transparent">
 
@@ -24,14 +24,14 @@
         <!-- Skills card header -->
         <div class="flex items-center justify-between pb-5">
           <p class="text-pure-white text-2xl font-semibold">Skills</p>
-          <button data-modal-target="addSkillModal" data-modal-toggle="addSkillModal" class="bg-transparent border border-ibb-white text-sm font-medium text-ibb-white hover:bg-ibb-dark-green rounded-md px-2 py-1">
-            <i class="fa-light fa-plus"></i>
+          <button routerLink="/user/profile/edit-skills" class="bg-transparent border border-ibb-white text-sm font-medium text-ibb-white hover:bg-ibb-dark-green rounded-md px-2 py-1">
+            <i class="fa fa-xs fa-pencil"></i>
           </button>
         </div>
 
         <!-- Skills container -->
-        <div class="grid grid-cols-5 gap-x-2 gap-y-2">
-          <span *ngFor="let skill of skills" class="bg-transparent border border-ibb-white text-sm font-medium text-ibb-white hover:bg-ibb-dark-green rounded-md p-2">{{skill.skillName}}</span>
+        <div class="flex grid grid-cols-5 gap-x-2 gap-y-2">
+          <span *ngFor="let skill of skills" class="overflow-hidden truncate bg-transparent border border-ibb-white text-sm font-medium text-ibb-white hover:bg-ibb-dark-green rounded-md p-2">{{skill.skillName}}</span>
         </div>
 
       </div> <!-- End Skills Card -->

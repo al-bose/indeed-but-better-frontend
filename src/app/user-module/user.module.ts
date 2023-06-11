@@ -8,6 +8,7 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
 import { AddEducationComponent } from './pages/add-education/add-education.component';
 import { AddWorkExperienceComponent } from './pages/add-work-experience/add-work-experience.component';
+import { EditSkillsComponent } from './pages/edit-skills/edit-skills.component';
 
 
 
@@ -18,7 +19,8 @@ import { AddWorkExperienceComponent } from './pages/add-work-experience/add-work
     UserProfileComponent,
     UserSettingsComponent,
     AddEducationComponent,
-    AddWorkExperienceComponent
+    AddWorkExperienceComponent,
+    EditSkillsComponent
   ],
   imports: [
     CommonModule,

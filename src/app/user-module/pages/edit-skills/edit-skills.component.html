@@ -1,0 +1,37 @@
+<div class="bg-transparent border border-ibb-border-grey absolute mt-5 m-auto left-0 right-0 shadow-lg items-center justify-center w-6/12 p-5">
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <h2 class="mt-5 text-center text-2xl font-bold leading-9 tracking-tight text-pure-white">Edit Skills</h2>
+  </div>
+
+  <div class="mt-10 mb-5">
+    <div class="flex grid grid-cols-5 gap-x-2 gap-y-2">
+        <button *ngFor="let skill of skills; let i = index" (click)="toggleSelectSkill(skill, i)" [ngClass]="{'bg-ibb-light-red':skill.isSelected}" class="overflow-hidden truncate border text-border-ibb-white text-sm font-medium text-ibb-white hover:bg-ibb-dark-green rounded-md p-2">
+          {{skill.skillName}}
+        </button>
+    </div>
+  </div>
+
+  <div *ngIf="addSkill">
+    <div class="flex items-center justify-evenly mt-10">
+      <div>
+        <button type="submit" (click)="addNewSkill()" class="text-white bg-ibb-dark-green hover:bg-ibb-darker-green focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add</button>
+      </div>
+      <div>
+        <input [(ngModel)]="newSkillName" type="text" id="newSkillName" name="newSkillName" class="shadow-sm bg-ibb-button-grey border border-ibb-border-grey text-ibb-white text-sm rounded-lg focus:ring-ibb-button-green-hover focus:border-ibb-button-green-hover block w-full p-2.5" placeholder="Skill name" required>
+      </div>
+      <div>
+        <button type="submit" (click)="clearNewSkill()" class="text-white bg-ibb-light-red hover:bg-ibb-dark-red focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!addSkill" class="flex items-center justify-evenly mt-10">
+    <button type="submit" (click)="toggleAddSkill()" class="text-white bg-ibb-dark-green hover:bg-ibb-darker-green focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add new skill</button>
+    <button type="submit" (click)="deleteSelectedSkills()" class="text-white bg-ibb-light-red hover:bg-ibb-dark-red focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Remove selected skills</button>
+  </div>
+
+  <div class="flex items-center justify-between mt-10">
+    <button routerLink="/user/profile" class="text-white bg-ibb-light-red hover:bg-ibb-dark-red focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Cancel</button>
+    <button type="submit" (click)="updateSkills()" class="text-white bg-ibb-dark-green hover:bg-ibb-darker-green focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Save changes</button>
+  </div>
+</div>
