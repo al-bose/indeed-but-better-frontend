@@ -51,7 +51,7 @@ export class LoginComponent {
               window.location.reload();
             });
         } else {
-          this.router.navigate(['/first-time-user-setup'])
+          this.router.navigate(['/user/first-time-setup'])
             .then(() => {
               window.location.reload();
             });

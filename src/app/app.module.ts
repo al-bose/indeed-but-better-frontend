@@ -12,7 +12,6 @@ import { CompaniesComponent } from './companies/companies.component';
 import { ApplicationsComponent } from './applications/applications.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
-import { FirstTimeUserSetupComponent } from './first-time-user-setup/first-time-user-setup.component';
 import { CreateJobListingComponent } from './create-job-listing/create-job-listing.component';
 import { FormsModule } from '@angular/forms';
 import { CreateCompanyComponent } from './create-company/create-company.component';
@@ -21,6 +20,7 @@ import { AddEducationComponent } from './add-education/add-education.component';
 import { SharedModule } from "./shared/shared.module";
 import { UserModule } from "./user-module/user.module";
 import { LoginComponent } from "./user-module/pages/login/login.component";
+import {FirstTimeSetupComponent} from "./user-module/pages/first-time-setup/first-time-setup.component";
 
 @NgModule({
   declarations: [
@@ -32,7 +32,6 @@ import { LoginComponent } from "./user-module/pages/login/login.component";
     ApplicationsComponent,
     NotificationsComponent,
     UserSettingsComponent,
-    FirstTimeUserSetupComponent,
     CreateJobListingComponent,
     CreateCompanyComponent,
     AddWorkExperienceComponent,
@@ -45,6 +44,7 @@ import { LoginComponent } from "./user-module/pages/login/login.component";
       {path: '', component: DashboardComponent},
       {path: 'dashboard', component: DashboardComponent},
       {path: 'user/login', component: LoginComponent},
+      {path: 'user/first-time-setup', component: FirstTimeSetupComponent},
       {path: 'user-profile', component: UserProfileComponent},
       {path: 'user-profile/add-education', component: AddEducationComponent},
       {path: 'user-profile/add-work-experience', component: AddWorkExperienceComponent},
@@ -53,7 +53,6 @@ import { LoginComponent } from "./user-module/pages/login/login.component";
       {path: 'applications', component: ApplicationsComponent},
       {path: 'notifications', component: NotificationsComponent},
       {path: 'settings', component: UserSettingsComponent},
-      {path: 'first-time-user-setup', component: FirstTimeUserSetupComponent},
       {path: 'create-job-listing', component: CreateJobListingComponent},
       {path: 'create-company', component: CreateCompanyComponent}
     ]),
