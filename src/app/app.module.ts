@@ -22,6 +22,8 @@ import { LoginComponent } from "./user/pages/login/login.component";
 import { FirstTimeSetupComponent } from "./user/pages/first-time-setup/first-time-setup.component";
 import { UserSettingsComponent } from "./user/pages/user-settings/user-settings.component";
 import { EditSkillsComponent } from "./user/pages/edit-skills/edit-skills.component";
+import {EditWorkExperienceComponent} from "./user/pages/edit-work-experience/edit-work-experience.component";
+import {EditEducationComponent} from "./user/pages/edit-education/edit-education.component";
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { EditSkillsComponent } from "./user/pages/edit-skills/edit-skills.compon
       {path: 'user/profile', component: UserProfileComponent},
       {path: 'user/settings', component: UserSettingsComponent},
       {path: 'user/profile/add-education', component: AddEducationComponent},
+      {path: 'user/profile/edit-education', component: EditEducationComponent},
       {path: 'user/profile/add-work-experience', component: AddWorkExperienceComponent},
+      {path: 'user/profile/edit-work-experience', component: EditWorkExperienceComponent},
       {path: 'user/profile/edit-skills', component: EditSkillsComponent},
       {path: 'job-listings', component: JobListingsComponent},
       {path: 'companies', component: CompaniesComponent},

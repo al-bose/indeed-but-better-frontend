@@ -9,6 +9,12 @@ import { UserSettingsComponent } from './pages/user-settings/user-settings.compo
 import { AddEducationComponent } from './pages/add-education/add-education.component';
 import { AddWorkExperienceComponent } from './pages/add-work-experience/add-work-experience.component';
 import { EditSkillsComponent } from './pages/edit-skills/edit-skills.component';
+import { WorkExperienceComponent } from './components/work-experience/work-experience.component';
+import { UserProfileCardComponent } from './components/user-profile-card/user-profile-card.component';
+import { EditWorkExperienceComponent } from './pages/edit-work-experience/edit-work-experience.component';
+import { EditEducationComponent } from './pages/edit-education/edit-education.component';
+import { EducationComponent } from './components/education/education.component';
+import { SkillsComponent } from './components/skills/skills.component';
 
 
 
@@ -20,7 +26,13 @@ import { EditSkillsComponent } from './pages/edit-skills/edit-skills.component';
     UserSettingsComponent,
     AddEducationComponent,
     AddWorkExperienceComponent,
-    EditSkillsComponent
+    EditSkillsComponent,
+    WorkExperienceComponent,
+    UserProfileCardComponent,
+    EditWorkExperienceComponent,
+    EditEducationComponent,
+    EducationComponent,
+    SkillsComponent
   ],
   imports: [
     CommonModule,

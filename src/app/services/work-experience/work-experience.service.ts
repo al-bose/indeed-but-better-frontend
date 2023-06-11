@@ -4,16 +4,16 @@ import {User} from "../user/user";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {WorkExperience} from "./work-experience";
+import {UserService} from "../user/user.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class WorkExperienceService {
 
+ constructor(private httpClient: HttpClient, private userService:UserService) { }
+  user: User = this.userService.getCurrentUser();
   baseUrl = environment.baseUrl;
-  user: User = JSON.parse(localStorage.getItem('currentUser')!);
-
-  constructor(private httpClient: HttpClient) { }
 
   getWorkExperienceForUser(): Observable<any> {
     var headers = new HttpHeaders({

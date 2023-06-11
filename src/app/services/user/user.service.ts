@@ -14,6 +14,10 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) { }
 
+  public getCurrentUser():User {
+    return JSON.parse(localStorage.getItem('currentUser')!);
+  }
+
   public signOutExternal = () => {
     localStorage.clear();
     console.log("local storage cleared");
@@ -27,7 +31,7 @@ export class UserService {
   updateUser(updatedUser:User): Observable<any> {
     var headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.user.jwt}`,
+      'Authorization': `Bearer ${updatedUser.jwt}`,
       'Accept': "*/*"
     });
     return this.httpClient.post(environment.baseUrl + "users/update", JSON.stringify(updatedUser), { headers: headers, withCredentials: false, responseType: 'text'});
