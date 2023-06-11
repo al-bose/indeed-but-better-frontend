@@ -12,7 +12,8 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
     NavbarComponent
   ],
   exports: [
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
