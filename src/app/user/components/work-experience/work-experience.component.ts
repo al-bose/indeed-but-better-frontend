@@ -21,12 +21,40 @@ export class WorkExperienceComponent {
     this.workExperienceService.getWorkExperienceForUser().subscribe(
       response => {
         for(var experience of response) {
-          this.workExperience.push(new WorkExperience(experience.jobTitle,experience.companyName,experience.startDate,
-            experience.endDate,experience.description,experience.location));
+          var workExperience = new WorkExperience();
+          workExperience.workExperienceId = experience.workExperienceId;
+          workExperience.jobTitle = experience.jobTitle;
+          workExperience.companyName = experience.companyName;
+          workExperience.startDate = experience.startDate;
+          workExperience.endDate = experience.endDate;
+          workExperience.description = experience.description;
+          workExperience.location = experience.location;
+          this.workExperience.push(workExperience);
         }
       }
     );
     this.workExperience.sort((a,b) => a.rawEndDate.getTime() - b.rawEndDate.getTime());
+  }
+
+  anyWorkExperienceSelectedForDeletion():boolean {
+    return this.workExperience.some(item => item.isSelected);
+  }
+
+  deleteSelectedWorkExperience() {
+    for(let i = 0; i < this.workExperience.length; i++) {
+      if(this.workExperience[i].isSelected) {
+        this.workExperienceService.deleteWorkExperience(this.workExperience[i]).subscribe(
+          response => {
+            console.log(response);
+          }
+        );
+      }
+    }
+    window.location.reload();
+  }
+
+  onEditPage():boolean {
+    return this.router.url === '/user/profile/edit-work-experience';
   }
 
   ngOnInit(): void {
