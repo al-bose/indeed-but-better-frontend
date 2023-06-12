@@ -1,9 +1,11 @@
 export class Education {
+  educationId:number;
   universityName:string;
   degreeType:string;
   majorName:string;
   graduationYear:string;
   description:string;
+  isSelected:boolean = false;
 
   constructor(universityName:string,degreeType:string,majorName:string,graduationYear:string,description:string) {
     this.universityName = universityName;

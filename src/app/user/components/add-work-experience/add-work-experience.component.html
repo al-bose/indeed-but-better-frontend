@@ -6,12 +6,12 @@
     <form>
       <!-- Company name and job title -->
       <div class="flex items-center justify-between">
-        <div class="mb-6">
+        <div class="mb-6 mx-1">
           <label for="companyName" class="block mb-2 text-sm font-medium text-ibb-white">Company name</label>
           <input [(ngModel)]="companyName" type="text" id="companyName" name="companyName" class="shadow-sm bg-ibb-button-grey border border-ibb-border-grey text-ibb-white text-sm rounded-lg focus:ring-ibb-button-green-hover focus:border-ibb-button-green-hover block w-full p-2.5" placeholder="Company name" required>
         </div>
 
-        <div class="mb-6">
+        <div class="mb-6 mx-1">
           <label for="jobTitle" class="block mb-2 text-sm font-medium text-ibb-white dark:text-white">Job title</label>
           <input [(ngModel)]="jobTitle" type="text" id="jobTitle" name="jobTitle" class="shadow-sm bg-ibb-button-grey border border-ibb-border-grey text-ibb-white text-sm rounded-lg focus:ring-ibb-button-green-hover focus:border-ibb-button-green-hover block w-full p-2.5" placeholder="Job title" required>
         </div>
@@ -60,8 +60,8 @@
       </div> <!-- End end Date -->
 
       <div class="flex items-center justify-between">
-        <button (click)="clear()" type="submit" class="text-white bg-ibb-light-red hover:bg-ibb-dark-red focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Clear</button>
-        <button (click)="onSubmit()" type="submit" class="text-white bg-ibb-dark-green hover:bg-ibb-darker-green focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add work experience</button>
+        <button (click)="clear()" type="submit" class="text-white bg-ibb-light-red hover:bg-ibb-dark-red focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mx-1">Clear</button>
+        <button (click)="onSubmit()" type="submit" class="text-white bg-ibb-dark-green hover:bg-ibb-darker-green focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mx-1">Add work experience</button>
       </div>
     </form>
   </div>

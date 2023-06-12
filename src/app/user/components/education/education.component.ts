@@ -22,13 +22,36 @@ export class EducationComponent {
   getEducation() {
     this.educationService.getEducationForUser().subscribe(
       response => {
-        for(var temp of response) {
-          this.education.push(new Education(temp.universityName,temp.degreeType,temp.majorName,
-            temp.graduationYear,temp.description));
+        for(let temp of response) {
+          let edu = new Education(temp.universityName,temp.degreeType,temp.majorName,
+            temp.graduationYear,temp.description);
+          edu.educationId = temp.educationId;
+          this.education.push(edu);
         }
       }
     );
     this.education.sort((a, b) => a.graduationYear.localeCompare(b.graduationYear));
+  }
+
+  onEditPage():boolean {
+    return this.router.url === '/user/profile/edit-education';
+  }
+
+  anyEducationSelectedForDeletion():boolean {
+    return this.education.some(item => item.isSelected);
+  }
+
+  deleteSelectedEducation() {
+    for(let i = 0; i < this.education.length; i++) {
+      if(this.education[i].isSelected) {
+        this.educationService.deleteEducation(this.education[i]).subscribe(
+          response => {
+            console.log(response);
+          }
+        );
+      }
+    }
+    window.location.reload();
   }
 
   ngOnInit() {

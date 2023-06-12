@@ -29,6 +29,7 @@ export class WorkExperienceComponent {
           workExperience.endDate = experience.endDate;
           workExperience.description = experience.description;
           workExperience.location = experience.location;
+          workExperience.prepareForDisplay();
           this.workExperience.push(workExperience);
         }
       }
