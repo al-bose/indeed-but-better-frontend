@@ -6,7 +6,6 @@ import { FirstTimeSetupComponent } from './pages/first-time-setup/first-time-set
 import {RouterLink, RouterLinkActive} from "@angular/router";
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
-import { AddEducationComponent } from './pages/add-education/add-education.component';
 import { EditSkillsComponent } from './pages/edit-skills/edit-skills.component';
 import { WorkExperienceComponent } from './components/work-experience/work-experience.component';
 import { UserProfileCardComponent } from './components/user-profile-card/user-profile-card.component';
@@ -15,6 +14,7 @@ import { EducationComponent } from './components/education/education.component';
 import { SkillsComponent } from './components/skills/skills.component';
 import { EditWorkExperienceComponent } from './pages/edit-work-experience/edit-work-experience.component';
 import {AddWorkExperienceComponent} from "./components/add-work-experience/add-work-experience.component";
+import {AddEducationComponent} from "./components/add-education/add-education.component";
 
 
 @NgModule({
@@ -23,7 +23,6 @@ import {AddWorkExperienceComponent} from "./components/add-work-experience/add-w
     FirstTimeSetupComponent,
     UserProfileComponent,
     UserSettingsComponent,
-    AddEducationComponent,
     AddWorkExperienceComponent,
     EditSkillsComponent,
     WorkExperienceComponent,
@@ -31,7 +30,9 @@ import {AddWorkExperienceComponent} from "./components/add-work-experience/add-w
     EditEducationComponent,
     EducationComponent,
     SkillsComponent,
-    EditWorkExperienceComponent
+    EditWorkExperienceComponent,
+    EditEducationComponent,
+    AddEducationComponent
   ],
   imports: [
     CommonModule,

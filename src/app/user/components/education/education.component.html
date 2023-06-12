@@ -8,12 +8,22 @@
   </div>
 
   <div *ngFor="let edu of education" class="flex-col items-start pb-3">
-    <h5 class="mb-1 text-xl font-medium text-ibb-white">{{edu.universityName}}</h5>
+    <div class="flex items-center justify-between">
+      <h5 class="mb-1 text-xl font-medium text-ibb-white">{{edu.universityName}}</h5>
+      <button *ngIf="onEditPage()" (click)="edu.isSelected = !edu.isSelected" [ngClass]="{'bg-ibb-light-red':edu.isSelected}" class="border border-ibb-white text-sm font-medium text-ibb-white hover:bg-ibb-light-red rounded-md px-1.5 py-0.5">
+        <i class="fa fa-xs fa-minus"></i>
+      </button>
+    </div>
+
     <div class="flex items-center justify-between">
       <span class="text-sm text-ibb-white">{{edu.majorName}}, {{edu.degreeType}}</span>
       <span class="text-sm text-ibb-white">{{edu.graduationYear}}</span>
     </div>
     <span class="text-xs text-ibb-white">{{edu.description}}</span>
+  </div>
+
+  <div *ngIf="onEditPage() && anyEducationSelectedForDeletion()" class="flex justify-end">
+    <button (click)="deleteSelectedEducation()" type="submit" class="text-white bg-ibb-light-red hover:bg-ibb-dark-red focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Delete selected education</button>
   </div>
 
 </div> <!-- End education card -->

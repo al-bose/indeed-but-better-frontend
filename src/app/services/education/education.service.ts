@@ -34,4 +34,14 @@ export class EducationService {
     });
     return this.httpClient.post(environment.baseUrl + "education/add-to-user", JSON.stringify(education), { headers: headers, withCredentials: false, responseType: 'text'});
   }
+
+  deleteEducation(education:Education): Observable<any> {
+    var headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.user.jwt}`,
+      'Accept': "*/*"
+    });
+
+    return this.httpClient.delete(environment.baseUrl + `education/delete/${education.educationId}`, { headers: headers, withCredentials: false, responseType: 'text'});
+  }
 }

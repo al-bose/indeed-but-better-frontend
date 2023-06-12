@@ -9,7 +9,7 @@
   <div *ngFor="let work of workExperience; let i = index" class="flex-col items-start pb-3">
     <div class="flex items-center justify-between">
       <h5 class="mb-1 text-xl font-medium text-ibb-white">{{work.companyName}}</h5>
-      <button *ngIf="onEditPage()" (click)="work.isSelected = true" [ngClass]="{'bg-ibb-light-red':work.isSelected}" class="border border-ibb-white text-sm font-medium text-ibb-white hover:bg-ibb-light-red rounded-md px-2 py-1">
+      <button *ngIf="onEditPage()" (click)="work.isSelected = !work.isSelected" [ngClass]="{'bg-ibb-light-red':work.isSelected}" class="border border-ibb-white text-sm font-medium text-ibb-white hover:bg-ibb-light-red rounded-md px-1.5 py-0.5">
         <i class="fa fa-xs fa-minus"></i>
       </button>
     </div>

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import {User} from "../../../services/user/user";
 import {Router} from "@angular/router";
 import {EducationService} from "../../../services/education/education.service";
+import {UserService} from "../../../services/user/user.service";
+import {User} from "../../../services/user/user";
 import {Education} from "../../../services/education/education";
 
 @Component({
@@ -11,22 +12,24 @@ import {Education} from "../../../services/education/education";
 })
 export class AddEducationComponent {
 
-  user: User = JSON.parse(localStorage.getItem("currentUser")!);
+  constructor(private router:Router,
+              private userService:UserService,
+              private educationService:EducationService){}
+  user:User = this.userService.getCurrentUser();
 
-  constructor(private router : Router, private educationService:EducationService){}
-
-  model:Education = (new Education("","","","",""));
+  model:Education = new Education("","","","","");
 
   onSubmit() {
     this.educationService.createEducation(this.model).subscribe(
       response => {
         console.log(response);
-        this.router.navigate(['/user/profile'])
-          .then(() => {
-            window.location.reload();
-          });
+        window.location.reload();
       }
     );
+  }
+
+  clear() {
+    this.model = new Education("","","","","");
   }
 
   cancelSubmit() {
@@ -35,5 +38,4 @@ export class AddEducationComponent {
         window.location.reload();
       });
   }
-
 }
