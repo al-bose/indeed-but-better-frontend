@@ -58,4 +58,27 @@ export class EducationComponent {
     this.getEducation();
   }
 
+  draggingIndex: number;
+  undIdx:number;
+
+  private _reorderItem(fromIndex: number, toIndex: number): void {
+    const itemToBeReordered = this.education.splice(fromIndex, 1)[0];
+    this.education.splice(toIndex, 0, itemToBeReordered);
+    this.draggingIndex = toIndex;
+  }
+
+  onDragStart(index: number): void {
+    this.draggingIndex = index;
+  }
+
+  onDragEnter(index: number): void {
+    if (this.draggingIndex !== index) {
+      this._reorderItem(this.draggingIndex, index);
+    }
+  }
+
+  onDragEnd(): void {
+    this.draggingIndex = this.undIdx;
+  }
+
 }

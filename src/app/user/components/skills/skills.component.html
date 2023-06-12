@@ -11,7 +11,13 @@
 
   <!-- Skills container -->
   <div class="grid grid-cols-5 gap-x-2 gap-y-2">
-    <button *ngFor="let skill of skills; let i = index"  (click)="toggleSkillSelected(i)" [ngClass]="{'bg-ibb-light-red':skill.isSelected}" class="overflow-hidden break-all border border-ibb-white text-sm font-medium text-ibb-white rounded-md p-2">{{skill.skillName}}</button>
+    <button *ngFor="let skill of skills; let index = index"
+            [draggable]="true"
+            [class.dragging]="index === this.draggingIndex"
+            (dragstart)="onDragStart(index)"
+            (dragenter)="onDragEnter(index)"
+            (dragend)="onDragEnd()"
+            (click)="toggleSkillSelected(index)" [ngClass]="{'bg-ibb-light-red':skill.isSelected}" class="overflow-hidden break-all border border-ibb-white text-sm font-medium text-ibb-white rounded-md p-2">{{skill.skillName}}</button>
   </div>
 
   <div *ngIf="onEditPage() && anySkillsSelectedForDeletion()" class="flex justify-end mt-5">
