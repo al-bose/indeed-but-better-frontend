@@ -10,8 +10,12 @@
   </div>
 
   <!-- Skills container -->
-  <div class="flex grid grid-cols-5 gap-x-2 gap-y-2">
-    <span *ngFor="let skill of skills" class="overflow-hidden truncate bg-transparent border border-ibb-white text-sm font-medium text-ibb-white hover:bg-ibb-dark-green rounded-md p-2">{{skill.skillName}}</span>
+  <div class="grid grid-cols-5 gap-x-2 gap-y-2">
+    <button *ngFor="let skill of skills; let i = index"  (click)="toggleSkillSelected(i)" [ngClass]="{'bg-ibb-light-red':skill.isSelected}" class="overflow-hidden break-all border border-ibb-white text-sm font-medium text-ibb-white rounded-md p-2">{{skill.skillName}}</button>
+  </div>
+
+  <div *ngIf="onEditPage() && anySkillsSelectedForDeletion()" class="flex justify-end mt-5">
+    <button (click)="deleteSelectedSkills()" type="submit" class="text-white bg-ibb-light-red hover:bg-ibb-dark-red focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Delete selected skills</button>
   </div>
 
 </div> <!-- End Skills Card -->
