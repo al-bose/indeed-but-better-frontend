@@ -7,7 +7,13 @@
     </button>
   </div>
 
-  <div *ngFor="let edu of education" class="flex-col items-start pb-3">
+  <div *ngFor="let edu of education; let index = index"
+       [draggable]="true"
+       [class.dragging]="index === this.draggingIndex"
+       (dragstart)="onDragStart(index)"
+       (dragenter)="onDragEnter(index)"
+       (dragend)="onDragEnd()"
+       class="flex-col items-start pb-3 drag-wrapper">
     <div class="flex items-center justify-between">
       <h5 class="mb-1 text-xl font-medium text-ibb-white">{{edu.universityName}}</h5>
       <button *ngIf="onEditPage()" (click)="edu.isSelected = !edu.isSelected" [ngClass]="{'bg-ibb-light-red':edu.isSelected}" class="border border-ibb-white text-sm font-medium text-ibb-white hover:bg-ibb-light-red rounded-md px-1.5 py-0.5">
