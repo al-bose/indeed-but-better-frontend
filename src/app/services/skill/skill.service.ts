@@ -4,16 +4,17 @@ import {User} from "../user/user";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Skill} from "./skill";
+import {UserService} from "../user/user.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SkillService {
 
-  baseUrl = environment.baseUrl;
-  user: User = JSON.parse(localStorage.getItem('currentUser')!);
+  constructor(private httpClient:HttpClient,
+              private userService:UserService) { }
 
-  constructor(private httpClient: HttpClient) { }
+  user: User = this.userService.getCurrentUser();
 
   getSkillsForUser(): Observable<any> {
     var headers = new HttpHeaders({
@@ -25,15 +26,23 @@ export class SkillService {
     return this.httpClient.get(environment.baseUrl + "skills/find-by-user", { headers: headers, withCredentials: false});
   }
 
-  updateSkillsForUser(skills:Skill[]) {
+  createSkill(skill:Skill): Observable<any> {
     var headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.user.jwt}`,
       'Accept': "*/*"
     });
-    console.log(headers);
-    return this.httpClient.post(environment.baseUrl + "skills/update-by-user",JSON.stringify(skills), { headers: headers, withCredentials: false, responseType: 'text'});
+    return this.httpClient.post(environment.baseUrl + "skills/add-to-user", JSON.stringify(skill), { headers: headers, withCredentials: false, responseType: 'text'});
   }
 
+  deleteSkill(skill:Skill): Observable<any> {
+    var headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.user.jwt}`,
+      'Accept': "*/*"
+    });
+
+    return this.httpClient.delete(environment.baseUrl + `skills/delete/${skill.skillId}`, { headers: headers, withCredentials: false, responseType: 'text'});
+  }
 
 }

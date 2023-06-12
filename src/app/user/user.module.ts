@@ -15,6 +15,7 @@ import { SkillsComponent } from './components/skills/skills.component';
 import { EditWorkExperienceComponent } from './pages/edit-work-experience/edit-work-experience.component';
 import {AddWorkExperienceComponent} from "./components/add-work-experience/add-work-experience.component";
 import {AddEducationComponent} from "./components/add-education/add-education.component";
+import { AddSkillComponent } from './components/add-skill/add-skill.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {AddEducationComponent} from "./components/add-education/add-education.co
     SkillsComponent,
     EditWorkExperienceComponent,
     EditEducationComponent,
-    AddEducationComponent
+    AddEducationComponent,
+    AddSkillComponent
   ],
   imports: [
     CommonModule,
