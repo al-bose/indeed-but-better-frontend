@@ -7,9 +7,10 @@ export class User {
   userPicture: string;
   phoneNumber: string;
   userType: string;
-  company: string;
   jwt: string;
-  title: string;
+  userTitle: string;
+  userDescription: string;
+  userLocation: string;
 
   constructor(email: string, name: string, firstName: string, lastName: string, userType: string, jwt: string) {
     this.email = email;

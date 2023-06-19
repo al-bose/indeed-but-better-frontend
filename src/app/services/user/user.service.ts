@@ -29,6 +29,7 @@ export class UserService {
   }
 
   updateUser(updatedUser:User): Observable<any> {
+    localStorage.setItem("currentUser",JSON.stringify(updatedUser));
     var headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${updatedUser.jwt}`,
