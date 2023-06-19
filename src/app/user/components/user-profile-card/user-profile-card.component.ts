@@ -15,4 +15,25 @@ export class UserProfileCardComponent {
 
   user:User = this.userService.getCurrentUser();
 
+  editMode:boolean = false;
+
+  toggleEditMode() {
+    this.editMode = !this.editMode;
+  }
+
+  clear() {
+    this.toggleEditMode();
+    this.user = this.userService.getCurrentUser();
+  }
+
+  onSubmit() {
+    this.userService.updateUser(this.user).subscribe(
+      response => {
+        console.log(response);
+      }
+    );
+
+    this.toggleEditMode();
+  }
+
 }
