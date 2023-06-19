@@ -46,7 +46,7 @@ export class EducationComponent {
   }
 
   deleteSelectedEducation() {
-    for(let i = 0; i < this.education.length; i++) {
+    for(let i = this.education.length - 1; i >= 0; i--) {
       if(this.education[i].isSelected) {
         this.educationService.deleteEducation(this.education[i]).subscribe(
           response => {
@@ -55,7 +55,7 @@ export class EducationComponent {
         );
       }
     }
-    window.location.reload();
+    this.education = this.education.filter(item => !item.isSelected);
   }
 
   ngOnInit() {
@@ -90,15 +90,12 @@ export class EducationComponent {
   }
 
   updateSortIndices() {
-    console.log("in update indices persist");
     for(let i = 0; i < this.education.length; i++) {
       this.education[i].sortIndex = i;
     }
-    console.log(this.education);
   }
 
   persistSortIndices() {
-    console.log("in persist");
     for(let i = 0; i < this.education.length; i++) {
       this.education[i].sortIndex = i;
       this.educationService.updateEducation(this.education[i]).subscribe(
@@ -107,7 +104,7 @@ export class EducationComponent {
         }
       );
     }
-    window.location.reload();
+    this.orderChanged = false;
   }
 
 

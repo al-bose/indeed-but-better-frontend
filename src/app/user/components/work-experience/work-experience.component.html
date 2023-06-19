@@ -29,8 +29,13 @@
     </div>
     <span class="text-xs text-ibb-white">{{work.description}}</span>
   </div>
-  <div *ngIf="onEditPage() && anyWorkExperienceSelectedForDeletion()" class="flex justify-end">
-    <button (click)="deleteSelectedWorkExperience()" type="submit" class="text-white bg-ibb-light-red hover:bg-ibb-dark-red focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Delete selected experience</button>
+  <div class="flex items-center justify-between mt-5">
+    <div>
+      <button *ngIf="onEditPage() && anyWorkExperienceSelectedForDeletion()" (click)="deleteSelectedWorkExperience()" type="submit" class="text-white bg-ibb-light-red hover:bg-ibb-dark-red focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Delete selected experience</button>
+    </div>
+    <div>
+      <button *ngIf="orderChanged" (click)="persistSortIndices()" type="submit" class="text-white bg-ibb-dark-green hover:bg-ibb-darker-green focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mx-1">Save List Order</button>
+    </div>
   </div>
 
 </div>
