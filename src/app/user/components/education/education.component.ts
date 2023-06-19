@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
 import {Router} from "@angular/router";
 import {UserService} from "../../../services/user/user.service";
 import {EducationService} from "../../../services/education/education.service";
 import {User} from "../../../services/user/user";
 import {Education} from "../../../services/education/education";
+import {Component} from "@angular/core";
 
 @Component({
   selector: 'app-education',
@@ -26,13 +26,17 @@ export class EducationComponent {
           let edu = new Education(temp.universityName,temp.degreeType,temp.majorName,
             temp.graduationYear,temp.description);
           edu.educationId = temp.educationId;
+          edu.sortIndex = temp.sortIndex;
           this.education.push(edu);
         }
       }
     );
-    this.education.sort((a, b) => a.graduationYear.localeCompare(b.graduationYear));
+    this.education.sort((a, b) => a.sortIndex - b.sortIndex);
   }
 
+  sortedEducation():Education[] {
+    return this.education.sort((a, b) => a.sortIndex - b.sortIndex);
+ }
   onEditPage():boolean {
     return this.router.url === '/user/profile/edit-education';
   }
@@ -56,6 +60,7 @@ export class EducationComponent {
 
   ngOnInit() {
     this.getEducation();
+    this.education = this.sortedEducation();
   }
 
   draggingIndex: number;
@@ -77,8 +82,34 @@ export class EducationComponent {
     }
   }
 
+  orderChanged:boolean = false;
   onDragEnd(): void {
     this.draggingIndex = this.undIdx;
+    this.orderChanged = true;
+    this.updateSortIndices();
   }
+
+  updateSortIndices() {
+    console.log("in update indices persist");
+    for(let i = 0; i < this.education.length; i++) {
+      this.education[i].sortIndex = i;
+    }
+    console.log(this.education);
+  }
+
+  persistSortIndices() {
+    console.log("in persist");
+    for(let i = 0; i < this.education.length; i++) {
+      this.education[i].sortIndex = i;
+      this.educationService.updateEducation(this.education[i]).subscribe(
+        response => {
+          console.log(response);
+        }
+      );
+    }
+    window.location.reload();
+  }
+
+
 
 }

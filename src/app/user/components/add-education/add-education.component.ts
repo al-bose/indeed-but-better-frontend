@@ -20,6 +20,7 @@ export class AddEducationComponent {
   model:Education = new Education("","","","","");
 
   onSubmit() {
+    this.model.sortIndex = -1;
     this.educationService.createEducation(this.model).subscribe(
       response => {
         console.log(response);
