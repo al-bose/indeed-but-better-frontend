@@ -25,6 +25,7 @@ export class SkillsComponent {
         for(var temp of response) {
           let skill = new Skill(temp.skillName);
           skill.skillId = temp.skillId;
+          skill.sortIndex = temp.sortIndex;
           this.skills.push(skill);
         }
       }
@@ -41,7 +42,7 @@ export class SkillsComponent {
         );
       }
     }
-    window.location.reload();
+    this.skills = this.skills.filter(item => !item.isSelected);
   }
 
   onEditPage():boolean {
@@ -81,8 +82,29 @@ export class SkillsComponent {
     }
   }
 
+  orderChanged:boolean = false;
   onDragEnd(): void {
     this.draggingIndex = this.undIdx;
+    this.orderChanged = true;
+    this.updateSortIndices();
+  }
+
+  updateSortIndices() {
+    for(let i = 0; i < this.skills.length; i++) {
+      this.skills[i].sortIndex = i;
+    }
+  }
+
+  persistSortIndices() {
+    for(let i = 0; i < this.skills.length; i++) {
+      this.skills[i].sortIndex = i;
+      this.skillService.updateSkill(this.skills[i]).subscribe(
+        response => {
+          console.log(response);
+        }
+      );
+    }
+    this.orderChanged = false;
   }
 
 }
