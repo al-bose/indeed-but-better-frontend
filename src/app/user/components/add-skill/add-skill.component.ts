@@ -23,6 +23,7 @@ export class AddSkillComponent {
 
   onSubmit() {
     if(!this.skills.some(item => item.skillName === this.model.skillName)) {
+      this.model.sortIndex = -1;
       this.skillService.createSkill(this.model).subscribe(
         response => {
           console.log(response);
@@ -45,6 +46,7 @@ export class AddSkillComponent {
         for(let temp of response) {
           let skill = new Skill(temp.skillName);
           skill.skillId = temp.skillId;
+          skill.sortIndex = temp.sortIndex;
           this.skills.push(skill);
         }
       }

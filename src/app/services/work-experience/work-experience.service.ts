@@ -43,4 +43,13 @@ export class WorkExperienceService {
 
     return this.httpClient.delete(environment.baseUrl + `work-experience/delete/${workExperience.workExperienceId}`, { headers: headers, withCredentials: false, responseType: 'text'});
   }
+
+  updateWorkExperience(workExperience:WorkExperience): Observable<any> {
+    var headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.user.jwt}`,
+      'Accept': "*/*"
+    });
+    return this.httpClient.post(environment.baseUrl + "work-experience/update", JSON.stringify(workExperience), { headers: headers, withCredentials: false, responseType: 'text'});
+  }
 }

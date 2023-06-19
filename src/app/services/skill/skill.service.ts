@@ -5,6 +5,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Skill} from "./skill";
 import {UserService} from "../user/user.service";
+import {Education} from "../education/education";
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +44,15 @@ export class SkillService {
     });
 
     return this.httpClient.delete(environment.baseUrl + `skills/delete/${skill.skillId}`, { headers: headers, withCredentials: false, responseType: 'text'});
+  }
+
+  updateSkill(skill:Skill): Observable<any> {
+    var headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.user.jwt}`,
+      'Accept': "*/*"
+    });
+    return this.httpClient.post(environment.baseUrl + "skills/update", JSON.stringify(skill), { headers: headers, withCredentials: false, responseType: 'text'});
   }
 
 }

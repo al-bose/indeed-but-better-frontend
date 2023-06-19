@@ -10,6 +10,7 @@ export class WorkExperience {
   rawEndDate:Date;
   rawStartDate:Date;
   isSelected:boolean = false;
+  sortIndex:number;
 
   prepareForDisplay() {
     this.startDate = this.formatDate(this.startDate);
@@ -40,7 +41,7 @@ export class WorkExperience {
   }
 
   formatDate(oldDate:string):string {
-    var date = new Date(oldDate);
+    let date = new Date(oldDate);
     return date.toLocaleString('en-US', { month: 'short' }) + " " + date.getFullYear();
   }
 

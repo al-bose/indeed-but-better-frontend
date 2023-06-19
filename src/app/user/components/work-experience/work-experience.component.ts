@@ -21,7 +21,7 @@ export class WorkExperienceComponent {
     this.workExperienceService.getWorkExperienceForUser().subscribe(
       response => {
         for(let experience of response) {
-          var workExperience = new WorkExperience();
+          let workExperience = new WorkExperience();
           workExperience.workExperienceId = experience.workExperienceId;
           workExperience.jobTitle = experience.jobTitle;
           workExperience.companyName = experience.companyName;
@@ -29,12 +29,14 @@ export class WorkExperienceComponent {
           workExperience.endDate = experience.endDate;
           workExperience.description = experience.description;
           workExperience.location = experience.location;
+          workExperience.sortIndex = experience.sortIndex;
           workExperience.prepareForDisplay();
           this.workExperience.push(workExperience);
         }
       }
     );
-    this.workExperience = this.workExperience.sort((a,b) => a.rawEndDate.getTime() - b.rawEndDate.getTime());
+    //this.workExperience = this.workExperience.sort((a,b) => a.rawEndDate.getTime() - b.rawEndDate.getTime());
+    this.workExperience.sort((a, b) => a.sortIndex - b.sortIndex);
   }
 
   anyWorkExperienceSelectedForDeletion():boolean {
@@ -51,7 +53,8 @@ export class WorkExperienceComponent {
         );
       }
     }
-    window.location.reload();
+    //window.location.reload();
+    this.workExperience = this.workExperience.filter(item => !item.isSelected);
   }
 
   onEditPage():boolean {
@@ -81,8 +84,29 @@ export class WorkExperienceComponent {
     }
   }
 
+  orderChanged:boolean = false;
   onDragEnd(): void {
     this.draggingIndex = this.undIdx;
+    this.orderChanged = true;
+    this.updateSortIndices();
+  }
+
+  updateSortIndices() {
+    for(let i = 0; i < this.workExperience.length; i++) {
+      this.workExperience[i].sortIndex = i;
+    }
+  }
+
+  persistSortIndices() {
+    for(let i = 0; i < this.workExperience.length; i++) {
+      this.workExperience[i].sortIndex = i;
+      this.workExperienceService.updateWorkExperience(this.workExperience[i]).subscribe(
+        response => {
+          console.log(response);
+        }
+      );
+    }
+    this.orderChanged = false;
   }
 
 }

@@ -37,6 +37,7 @@ export class AddWorkExperienceComponent {
 
   onSubmit() {
     var workExperience = new WorkExperience();
+    workExperience.sortIndex = -1;
     workExperience.jobTitle = this.jobTitle;
     workExperience.companyName = this.companyName;
     workExperience.startDate = this.startDate;
