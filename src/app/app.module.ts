@@ -10,7 +10,6 @@ import { UserProfileComponent } from './user/pages/user-profile/user-profile.com
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CompaniesComponent } from './companies/companies.component';
 import { ApplicationsComponent } from './applications/applications.component';
-import { NotificationsComponent } from './notifications/notifications.component';
 import { CreateJobListingComponent } from './create-job-listing/create-job-listing.component';
 import { FormsModule } from '@angular/forms';
 import { CreateCompanyComponent } from './create-company/create-company.component';
@@ -20,8 +19,9 @@ import { LoginComponent } from "./user/pages/login/login.component";
 import { FirstTimeSetupComponent } from "./user/pages/first-time-setup/first-time-setup.component";
 import { UserSettingsComponent } from "./user/pages/user-settings/user-settings.component";
 import { EditSkillsComponent } from "./user/pages/edit-skills/edit-skills.component";
-import {EditWorkExperienceComponent} from "./user/pages/edit-work-experience/edit-work-experience.component";
-import {EditEducationComponent} from "./user/pages/edit-education/edit-education.component";
+import { EditWorkExperienceComponent } from "./user/pages/edit-work-experience/edit-work-experience.component";
+import { EditEducationComponent } from "./user/pages/edit-education/edit-education.component";
+import { NotificationsComponent } from "./user/pages/notifications/notifications.component";
 
 @NgModule({
   declarations: [
@@ -30,7 +30,6 @@ import {EditEducationComponent} from "./user/pages/edit-education/edit-education
     DashboardComponent,
     CompaniesComponent,
     ApplicationsComponent,
-    NotificationsComponent,
     CreateJobListingComponent,
     CreateCompanyComponent
   ],
@@ -47,10 +46,10 @@ import {EditEducationComponent} from "./user/pages/edit-education/edit-education
       {path: 'user/profile/edit-work-experience', component: EditWorkExperienceComponent},
       {path: 'user/profile/edit-education', component: EditEducationComponent},
       {path: 'user/profile/edit-skills', component: EditSkillsComponent},
+      {path: 'user/notifications', component: NotificationsComponent},
       {path: 'job-listings', component: JobListingsComponent},
       {path: 'companies', component: CompaniesComponent},
       {path: 'applications', component: ApplicationsComponent},
-      {path: 'notifications', component: NotificationsComponent},
       {path: 'create-job-listing', component: CreateJobListingComponent},
       {path: 'create-company', component: CreateCompanyComponent}
     ]),

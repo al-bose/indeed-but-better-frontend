@@ -33,12 +33,4 @@ export class NavbarComponent {
         window.location.reload();
       });
   }
-
-  navigateToNotifications() {
-    this.router.navigate(['/notifications'])
-      .then(() => {
-        window.location.reload();
-      });
-  }
-
 }

@@ -1,0 +1,11 @@
+<!-- Selected Notification Card -->
+<div class="w-full max-w-1/3 bg-transparent border border-ibb-border-grey rounded-lg shadow-lg p-5 mb-5">
+  <div class="flex items-center justify-start pb-5">
+    <p class="text-pure-white text-2xl font-semibold">Selected Notification</p>
+  </div>
+  <div class="flex flex-col items-center p-5">
+    <span *ngIf="this.selectedUserNotification" class="text-sm text-ibb-white mt-3">{{this.selectedUserNotification.notification.notificationText}}</span>
+  </div>
+
+</div>
+<!-- End Selected Notification Card -->
